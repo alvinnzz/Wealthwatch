@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function AddTransactionViewer(props) {
   const [category, setCat] = useState();
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState(0);
   const [type, setType] = useState("expense");
 
   function addTransaction() {
@@ -22,6 +22,7 @@ function AddTransactionViewer(props) {
         <input
           type="text"
           placeholder="Category"
+          required
           value={category}
           onChange={(e) => setCat(e.target.value)}
         />
@@ -69,7 +70,7 @@ function TransactionsComponent(props) {
   return (
     <div className="contents">
       <div className="balance">
-        Balance: $100000
+        Balance: ${props.income - props.expense}
         <button
           className="addTransaction"
           onClick={() => toggleClick(!isClicked)}
@@ -85,10 +86,10 @@ function TransactionsComponent(props) {
       )}
       <div className="ExpenseIncomeContainer">
         <div className="ExpenseContainer">
-          Expense<span>$1000</span>
+          Expense<span>${props.expense}</span>
         </div>
         <div className="IncomeContainer">
-          Income<span>$1000</span>
+          Income<span>${props.income}</span>
         </div>
       </div>
     </div>
