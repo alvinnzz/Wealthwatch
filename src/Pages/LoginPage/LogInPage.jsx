@@ -5,7 +5,7 @@ import background from "../../Resources/background.jpg";
 
 function MainPage() {
   return (
-    <Container centerConten mt="70px">
+    <Container centerConten mt="70px" centerContent>
       <Container
         bg="gray.50"
         borderRadius="50px"
