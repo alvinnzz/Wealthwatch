@@ -1,4 +1,4 @@
-import Logo from "../Resources/logoSample.png";
+import Logo from "../../Resources/logoSample.png";
 import "./navbarStyle.css";
 
 function NavBar() {
