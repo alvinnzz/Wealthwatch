@@ -1,6 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+import HomePage from "./Pages/HomePage/HomePage";
+import NavBar from "./Pages/navbar/NavBar";
+
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <NavBar />,
+//     errorElement: <ErrorPage />,
+//   },
+//   {
+//     path: "/Pages/HomePage/HomePage",
+//     element: <HomePage />,
+//   },
+// ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

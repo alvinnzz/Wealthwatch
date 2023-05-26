@@ -33,7 +33,7 @@ function NavBar() {
               </li>
 
               <li>
-                <a href="/">Login</a>
+                <a href="../LoginPage/LoginPage">Login</a>
               </li>
             </div>
           </ul>
