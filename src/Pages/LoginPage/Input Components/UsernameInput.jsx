@@ -1,14 +1,15 @@
 import { Input } from "@chakra-ui/react";
-function EmailInput() {
+
+function UsernameInput() {
   return (
     <Input
-      placeholder="Email"
+      placeholder="Username"
       size="lg"
       width="80%"
       borderColor="blackAlpha.600"
-      mt="15px"
+      mt="30px"
     ></Input>
   );
 }
 
-export default EmailInput;
+export default UsernameInput;

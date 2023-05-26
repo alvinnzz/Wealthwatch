@@ -1,8 +1,9 @@
 import EmailInput from "./Input Components/EmailInput";
 import PasswordInput from "./Input Components/PasswordInput";
 import { Button, Container, Text, Link, Box } from "@chakra-ui/react";
+import UsernameInput from "./Input Components/UsernameInput";
 
-function LoginPage() {
+function RegisterPage() {
   return (
     <Container centerConten mt="70px" centerContent>
       <Container
@@ -12,8 +13,9 @@ function LoginPage() {
         boxShadow="dark-lg"
       >
         <Text fontSize={30} mt="20px">
-          Sign In
+          Sign Up
         </Text>
+        <UsernameInput />
         <EmailInput />
         <PasswordInput />
         <Button
@@ -23,16 +25,17 @@ function LoginPage() {
           width="75%"
           borderRadius="30px"
         >
-          Sign In
+          Create your account
         </Button>
       </Container>
       <Text mt="20px" fontSize="16px">
-        New to WealthWatch?{"     "}
+        Already have an account?{"     "}
         <Link color="#ffa460" fontWeight="bold">
-          Sign Up
+          Log In
         </Link>
       </Text>
     </Container>
   );
 }
-export default LoginPage;
+
+export default RegisterPage;

@@ -1,7 +1,7 @@
 import NavBar from "./Pages/navbar/NavBar";
 import FinanceTrackerPage from "./Pages/TransactionsPage/FinanceTrackerPage";
-import MainPage from "./Pages/LoginPage/LogInPage";
 import { ChakraProvider } from "@chakra-ui/react";
+import RegisterPage from "./Pages/LoginPage/RegisterPage";
 
 function App(props) {
   return (
@@ -17,7 +17,7 @@ function App(props) {
       <div className="App">
         <ChakraProvider>
           <NavBar />
-          <MainPage />
+          <RegisterPage />
         </ChakraProvider>
       </div>
     </>
