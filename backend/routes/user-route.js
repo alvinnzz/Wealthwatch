@@ -1,27 +1,40 @@
-const express = require('express')
-const {check} = require('express-validator')
-const User = require('../models/user')
+const express = require('express');
+const {check} = require('express-validator');
+const User = require('../models/user');
+const bcrypt = require('bcryptjs');
 
 const router = express.Router();
 
 
 router.post('/signup', async (req, res, next) => {
-  const {username, email, password} = req.body
+  const {username, email, password} = req.body;
   // email is unique and check if email is in database
-  const check = await User.findOne({email:req.body.email})
-  
+  let check;
+  try{
+    check = await User.findOne({email:req.body.email});
+  } catch (err) {
+    console.log(err);
+    res.status(403).send("Signup failed");
+  }
   if (check) {
     console.log("Email is taken. Please try another email.");
     return res.status(403).send("signup failed: email taken");
   } else {
+    let hashedPassword;
+    try{
+      hashedPassword = await bcrypt.hash(password, 12);
+    } catch (err) {
+      console.log(err);
+      res.status(403).send("Signup failed");
+    }
     const createdUser = new User({
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password
+      password: hashedPassword
     });
     try {
       const result = await createdUser.save();
-      console.log("User saved into database")
+      console.log("User saved into database");
     } catch (err) {
       console.log(err);
     }
@@ -33,20 +46,29 @@ router.post('/signup', async (req, res, next) => {
 
 router.post('/login', async (req, res, next) =>{
   const {email, password } = req.body;
-  try {
-    const check = await User.findOne({email:email});
-  } catch (err){
+  let check;
+  try{
+    check = await User.findOne({email:req.body.email});
+  } catch (err) {
     console.log(err);
+    res.status(403).send("Login failed");
+  }
+  let isValidPassword = false;
+  try {
+    isValidPassword = await bcrypt.compare(password, check.password);
+  } catch (err) {
+    console.log(err);
+    res.status(403).send("Login failed");
   }
   if (!check) {
-      console.log("Login failed: Email not found. Please try again.");
-      res.status(404).send("Email not found");
-  } else if (check.password !== password) {
-      console.log("Login failed: Wrong Password. Please try again.");
-      res.status(401).send("Wrong Password!");
+    console.log("Login failed: Email not found. Please try again.");
+    res.status(404).send("Email not found");
+  } else if (!isValidPassword) {
+    console.log("Login failed: Wrong Password. Please try again.");
+    res.status(401).send("Wrong Password!");
   } else {
-      console.log("Login Successfully!");
-      res.status(201).send("Login Successfully!");
+    console.log("Login Successfully!");
+    res.status(201).send("Login Successfully!");
   }
 });
 
