@@ -1,3 +1,4 @@
+import { Button } from "@chakra-ui/react";
 import Logo from "../../Resources/logoSample.png";
 import "./navbarStyle.css";
 
@@ -13,10 +14,7 @@ function NavBar() {
           <ul className="nav-links">
             <div className="menu">
               <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/">About</a>
+                <a onClick={() => (window.location.href = "/")}>Home</a>
               </li>
 
               <li className="services">
@@ -24,16 +22,19 @@ function NavBar() {
 
                 <ul className="dropdown">
                   <li>
-                    <a href="/">Log Transaction </a>
-                  </li>
-                  <li>
-                    <a href="/">Stock Price</a>
+                    <a
+                      onClick={() =>
+                        (window.location.href = "/financialtracker")
+                      }
+                    >
+                      Log Transaction{" "}
+                    </a>
                   </li>
                 </ul>
               </li>
 
               <li>
-                <a href="../LoginPage/LoginPage">Login</a>
+                <a onClick={() => (window.location.href = "/login")}>Login</a>
               </li>
             </div>
           </ul>

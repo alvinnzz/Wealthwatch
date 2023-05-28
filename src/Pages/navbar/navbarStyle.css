@@ -92,3 +92,7 @@ li {
   transition-duration: 2s;
   transition-timing-function: ease-in-out;
 }
+
+a:hover {
+  cursor: pointer;
+}

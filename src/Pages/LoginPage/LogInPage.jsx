@@ -28,7 +28,11 @@ function LoginPage() {
       </Container>
       <Text mt="20px" fontSize="16px">
         New to WealthWatch?{"     "}
-        <Link color="#ffa460" fontWeight="bold">
+        <Link
+          color="#ffa460"
+          fontWeight="bold"
+          onClick={() => (window.location.href = "/register")}
+        >
           Sign Up
         </Link>
       </Text>

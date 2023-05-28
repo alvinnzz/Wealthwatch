@@ -1,6 +1,6 @@
 import EmailInput from "./Input Components/EmailInput";
 import PasswordInput from "./Input Components/PasswordInput";
-import { Button, Container, Text, Link, Box } from "@chakra-ui/react";
+import { Button, Container, Text, Link } from "@chakra-ui/react";
 import UsernameInput from "./Input Components/UsernameInput";
 
 function RegisterPage() {
@@ -30,7 +30,11 @@ function RegisterPage() {
       </Container>
       <Text mt="20px" fontSize="16px">
         Already have an account?{"     "}
-        <Link color="#ffa460" fontWeight="bold">
+        <Link
+          color="#ffa460"
+          fontWeight="bold"
+          onClick={() => (window.location.href = "/login")}
+        >
           Log In
         </Link>
       </Text>

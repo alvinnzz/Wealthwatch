@@ -1,7 +1,7 @@
 import NavBar from "../navbar/NavBar";
 
 function HomePage() {
-  return <NavBar></NavBar>;
+  return;
 }
 
 export default HomePage;
