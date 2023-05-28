@@ -31,7 +31,7 @@ function LoginPage() {
         <Link
           color="#ffa460"
           fontWeight="bold"
-          onClick={() => (window.location.href = "/register")}
+          onClick={() => (window.location = "/register")}
         >
           Sign Up
         </Link>
