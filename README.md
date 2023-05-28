@@ -17,6 +17,6 @@ We would like to improve our skills in software engineering by creating an appli
 ### Features:
 1. Login and Signup feature
 2. Record and delete transactions made
-![Expense Feature](https://drive.google.com/drive/u/0/folders/1WAZy1uxdOkoKccAwogzTq-NDjbavM8BR)
+<img src=./src/Resources/RecordExpense.png width="600" height="300" />
 
 
