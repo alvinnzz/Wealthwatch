@@ -1,6 +1,6 @@
 import NavBar from "../navbar/NavBar";
 
-function HomePage() {
+function HomePage({ loggedin }) {
   return;
 }
 

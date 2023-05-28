@@ -1,10 +1,43 @@
 import EmailInput from "./Input Components/EmailInput";
 import PasswordInput from "./Input Components/PasswordInput";
 import { Button, Container, Text, Link, Box } from "@chakra-ui/react";
+import { useState } from "react";
+import { useHistory } from "react-router";
 
-function LoginPage() {
+function LoginPage({ loggedin, setLoggedin }) {
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [error, setError] = useState(null);
+
+  const loginHandler = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5001/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+
+      const responseData = await response.json();
+      console.log(responseData);
+      setLoggedin(true);
+      alert("logged in successful");
+      // const value = true;
+      alert(loggedin);
+      window.location.href = "/?loggedin=true";
+    } catch (err) {
+      console.log(err);
+      alert("login failed");
+    }
+  };
+
   return (
-    <Container centerConten mt="70px" centerContent>
+    <Container mt="70px" centerContent>
       <Container
         bg="gray.50"
         borderRadius="50px"
@@ -14,14 +47,15 @@ function LoginPage() {
         <Text fontSize={30} mt="20px">
           Sign In
         </Text>
-        <EmailInput />
-        <PasswordInput />
+        <EmailInput setEmail={setEmail} setError={setError} />
+        <PasswordInput setPassword={setPassword} />
         <Button
           colorScheme="yellow"
           mt="25px"
           mb="25px"
           width="75%"
           borderRadius="30px"
+          onClick={loginHandler}
         >
           Sign In
         </Button>

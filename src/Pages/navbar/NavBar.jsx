@@ -1,24 +1,23 @@
 import Logo from "../../Resources/logoSample.png";
 import "./navbarStyle.css";
 
-function NavBar() {
+function NavBar({ loggedin }) {
   return (
     <>
-      <body>
-        <nav className="navbar">
-          {/* Logo */}
-          <img className="logo" src={Logo} alt="WealthWatch" />
+      <nav className="navbar">
+        {/* Logo */}
+        <img className="logo" src={Logo} alt="WealthWatch" />
 
-          {/* Navigation Menu */}
-          <ul className="nav-links">
-            <div className="menu">
-              <li>
-                <a onClick={() => (window.location = "/")}>Home</a>
-              </li>
+        {/* Navigation Menu */}
+        <ul className="nav-links">
+          <div className="menu">
+            <li>
+              <a onClick={() => (window.location = "/")}>Home</a>
+            </li>
 
+            {loggedin ? (
               <li className="services">
-                <a href="/">Services</a>
-
+                <a>Services</a>
                 <ul className="dropdown">
                   <li>
                     <a onClick={() => (window.location = "/financialtracker")}>
@@ -27,14 +26,20 @@ function NavBar() {
                   </li>
                 </ul>
               </li>
+            ) : (
+              <div />
+            )}
 
+            {loggedin ? (
+              <div />
+            ) : (
               <li>
                 <a onClick={() => (window.location = "/login")}>Login</a>
               </li>
-            </div>
-          </ul>
-        </nav>
-      </body>
+            )}
+          </div>
+        </ul>
+      </nav>
     </>
   );
 }
