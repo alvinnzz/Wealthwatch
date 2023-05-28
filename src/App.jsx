@@ -18,7 +18,7 @@ function App(props) {
       <div className="App">
         <ChakraProvider>
           <NavBar />
-          <LoginPage />
+          <FinanceTrackerPage />
         </ChakraProvider>
       </div>
     </>
