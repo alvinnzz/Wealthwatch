@@ -1,8 +1,9 @@
 # Wealthwatch
+
 A web application to help individuals monitor and keep track of their personal finances.
-
+***
 #### An Orbital Project by Ng weimin Alvin & Nicholas Tng Yong Kang
-
+***
 ### Proposed Level of Achievement:
 Apollo
 
@@ -15,8 +16,20 @@ We would like to improve our skills in software engineering by creating an appli
 * As users, we would like to be able to access our financial information in terms of visual representations such as charts or graphs to help us better visualize our spending patterns.
 
 ### Features:
-1. Login and Signup feature
-2. Record and delete transactions made
-<img src=./src/Resources/RecordExpense.png width="600" height="300" />
+1. Login and Signup feature (Completed)
+2. Record and delete transactions made (Midway through)
+3. Breakdown spendings of different categories (e.g. Food, Transport, etc.) 
+4. Visualize the user's financial information in terms of charts and graphs
+5. Provide financial advice to user
 
+### Ideation:
+We would like users to be able to record their transaction of their expenses into different categories.
+
+> <img src=./src/Resources/RecordExpense.png width="600" height="300" />
+
+### Timeline:
+|DATE|FEATURES|
+|----|--------|
+|14th May - 19th May|Prototype for application and layout of different pages|
+|20th May - 25th May|Login and Sign Up feature for user|
 
