@@ -17,7 +17,6 @@ function PasswordInput() {
       <FormControl isRequired>
         <Input
           placeholder="Password"
-          pr="4.5rem"
           type={show ? "text" : "password"}
           size="lg"
           borderColor="blackAlpha.600"

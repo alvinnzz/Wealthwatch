@@ -3,13 +3,13 @@ import { Input, FormLabel, FormControl } from "@chakra-ui/react";
 function UsernameInput() {
   return (
     <FormControl isRequired>
-      <FormLabel>First name</FormLabel>
       <Input
         placeholder="Username"
+        ml="55px"
         size="lg"
         width="80%"
         borderColor="blackAlpha.600"
-        mt="30px"
+        mt="15px"
       />
     </FormControl>
   );
