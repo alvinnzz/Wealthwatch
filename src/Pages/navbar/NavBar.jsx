@@ -1,7 +1,9 @@
 import Logo from "../../Resources/logoSample.png";
 import "./navbarStyle.css";
+import { useNavigate } from "react-router-dom";
 
-function NavBar({ loggedin }) {
+function NavBar({ setLoggedin, loggedin }) {
+  const navigate = useNavigate();
   return (
     <>
       <nav className="navbar">
@@ -12,27 +14,36 @@ function NavBar({ loggedin }) {
         <ul className="nav-links">
           <div className="menu">
             <li>
-              <a onClick={() => (window.location = "/")}>Home</a>
+              <a onClick={() => navigate("/")}>Home</a>
             </li>
 
-            {loggedin ? (
+            {loggedin && (
               <li className="services">
                 <a>Services</a>
                 <ul className="dropdown">
                   <li>
-                    <a onClick={() => (window.location = "/financialtracker")}>
+                    <a onClick={() => navigate("/financialtracker")}>
                       Log Transaction{" "}
                     </a>
                   </li>
                 </ul>
               </li>
-            ) : (
-              <div />
             )}
 
-            {loggedin ? (
-              <div />
-            ) : (
+            {loggedin && (
+              <li>
+                <a
+                  onClick={() => {
+                    setLoggedin(false);
+                    navigate("/");
+                  }}
+                >
+                  Logout
+                </a>
+              </li>
+            )}
+
+            {!loggedin && (
               <li>
                 <a onClick={() => (window.location = "/login")}>Login</a>
               </li>

@@ -12,15 +12,14 @@ function App(props) {
   return (
     <ChakraProvider>
       <Router>
-        <NavBar loggedin={loggedin} />
+        <NavBar loggedin={loggedin} setLoggedin={setLoggedin} />
+        <HomePage />
         <Routes>
-          <Route path="/" element={<HomePage loggedin={loggedin} />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route
             path="/login"
-            element={
-              <LoginPage loggedin={loggedin} setLoggedin={setLoggedin} />
-            }
+            element={<LoginPage setLoggedin={setLoggedin} />}
           />
           <Route path="/financialtracker" element={<FinanceTrackerPage />} />
         </Routes>

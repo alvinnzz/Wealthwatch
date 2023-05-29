@@ -2,12 +2,13 @@ import EmailInput from "./Input Components/EmailInput";
 import PasswordInput from "./Input Components/PasswordInput";
 import { Button, Container, Text, Link, Box } from "@chakra-ui/react";
 import { useState } from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 
-function LoginPage({ loggedin, setLoggedin }) {
+function LoginPage({ setLoggedin }) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const loginHandler = async (event) => {
     event.preventDefault();
@@ -25,11 +26,10 @@ function LoginPage({ loggedin, setLoggedin }) {
 
       const responseData = await response.json();
       console.log(responseData);
-      setLoggedin(true);
       alert("logged in successful");
       // const value = true;
-      alert(loggedin);
-      window.location.href = "/?loggedin=true";
+      setLoggedin(true);
+      navigate("/");
     } catch (err) {
       console.log(err);
       alert("login failed");
