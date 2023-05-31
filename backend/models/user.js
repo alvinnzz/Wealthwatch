@@ -15,11 +15,16 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
-})
+    },
+    transactions: [{
+        type: mongoose.Types.ObjectId, 
+        required: true, 
+        ref: "Transaction"
+    }]
+});
 
-userSchema.plugin(uniqueValidator)
+userSchema.plugin(uniqueValidator);
 
-const user = mongoose.model('User', userSchema)
+const user = mongoose.model('User', userSchema);
 
 module.exports = user
