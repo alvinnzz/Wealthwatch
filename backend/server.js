@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const userRoute = require("./routes/user-route");
+const transactionRoute = require("./routes/transaction-route");
 const PORT = process.env.PORT || 5001;
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 //for login and signup
 app.use("/api/users", userRoute);
+app.use("/api/transactions", transactionRoute);
 
 app.get("/", (req, res) => {
   console.log("home");
