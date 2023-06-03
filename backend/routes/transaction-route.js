@@ -17,11 +17,15 @@ router.get('/:transactionId', async (req, res, next) => {
     try {
         transaction = await Transaction.findById(transactionId);
     } catch (err) {
-        console.log("Something went wrong, could not find a transaction");
+        console.log(err);
+        const error = new Error("Something went wrong, could not find a transaction.")
+        return next(error);
     }
 
     if (!transaction) {
         console.log("Could not find the transaction with provided id.");
+        const error = new Error("Could not find the transaction with provided id.");
+        return next(error);
     }
     console.log("Transaction found!");
     res.status(201).json({ transaction: transaction.toObject({ getters: true }) });
@@ -34,11 +38,15 @@ router.get('/user/:uid', async (req, res, next) => {
     try {
         userWithTransactions = await User.findById(userId).populate("transactions");
     } catch (err){
-        console.log("Fetching transactions failed, please try again later.")
+        console.log(err);
+        const error = new Error("Fetching transactions failed, please try again later.");
+        return next(error);
     }
 
     if(!userWithTransactions || userWithTransactions.transactions.length === 0) {
-        console.log("Could not find transactions for the userId.")
+        console.log("Could not find transactions for the userId.");
+        const error = new Error("Could not find transactions for the userId.");
+        return next(error);
     }
 
     res.status(201).json({
@@ -54,7 +62,8 @@ router.post('/', async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()){
         console.log("Invalid inputs");
-        return next();
+        const error = new Error("Invalid inputs");
+        return next(error);
     }
     const { description , category, amount, date, creator } = req.body;
     
@@ -70,11 +79,15 @@ router.post('/', async (req, res, next) => {
     try{
         user = await User.findById(creator);
     } catch (err) {
-        console.log("Creating transaction failed, please try again");
+        console.log(err);
+        const error = new Error("Creating transaction failed, please try again");
+        return next(error);
     }
 
     if (!user) {
         console.log("Cannot find user for provided id");
+        const error = new Error("Cannot find user for provided id!");
+        return next(error);
     }
 
     try {
@@ -86,6 +99,8 @@ router.post('/', async (req, res, next) => {
         await sess.commitTransaction();
     } catch (err) {
         console.log(err);
+        const error = new Error("Adding transaction failed, please try again!");
+        return next(error);
     }
     console.log("Added transaction successfully!");
     res.status(201).json({ transaction: createdTransaction});
@@ -102,10 +117,14 @@ router.delete("/:transactionId", async (req, res, next) => {
         transaction = await Transaction.findById(transactionId).populate("creator");
     } catch (err) {
         console.log(err);
+        const error = new Error("Deleting transaction failed!");
+        return next(error);
     }
 
     if (!transaction) {
-        console.log("Cannot find transaction for this id.")
+        console.log("Cannot find transaction for this id.");
+        const error = new Error("Cannot find transaction for this id.");
+        return next(error);
     }
 
     try{
@@ -117,6 +136,8 @@ router.delete("/:transactionId", async (req, res, next) => {
         await sess.commitTransaction();
     } catch (err) {
         console.log(err);
+        const error = new Error("Deleting transaction failed, please try again later!");
+        return next(error);
     }
     console.log("Transaction deleted successfully");
     res.status(200).json({message: "Deleted transaction"});

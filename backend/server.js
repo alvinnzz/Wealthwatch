@@ -6,6 +6,8 @@ const cors = require("cors");
 
 const userRoute = require("./routes/user-route");
 const transactionRoute = require("./routes/transaction-route");
+const errorHandler = require("./middleware/errorHandler");
+
 const PORT = process.env.PORT || 5001;
 const app = express();
 
@@ -26,6 +28,8 @@ app.get("/api/users/signup", (req, res) => {
   console.log("signup page");
   res.status(200).send("Signup page");
 });
+
+app.use(errorHandler);
 
 mongoose
   .connect(
