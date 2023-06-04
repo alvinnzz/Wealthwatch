@@ -10,7 +10,6 @@ function LoginPage({ setToken }) {
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
 
-  // const [token, setUserId] = useState(null);
   const navigate = useNavigate();
 
   const loginHandler = async (event) => {

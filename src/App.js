@@ -7,15 +7,14 @@ import HomePage from "./Pages/HomePage/HomePage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DonutGraph from "./Pages/ExpenseTracker/DonutGraph";
 import { useState } from "react";
+import TipGenerator from "./Pages/TipGenerator";
 
 function App(props) {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
-
   return (
     <ChakraProvider>
       <Router>
         <NavBar token={token} setToken={setToken} />
-        <HomePage />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
