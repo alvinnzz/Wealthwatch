@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PropTypes } from "prop-types";
 
-function LoginPage({ setLoggedin, setUserId }) {
+function LoginPage({ setToken }) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
@@ -28,14 +28,13 @@ function LoginPage({ setLoggedin, setUserId }) {
       });
 
       const responseData = await response.json();
-      console.log(responseData);
       alert("logged in successful");
-      // const value = true;
-      setUserId(responseData.userId);
-      alert(responseData.userId);
-      setLoggedin(true);
-      // console.log(userId);
-      navigate("/");
+      sessionStorage.setItem("token", responseData.token);
+      sessionStorage.setItem("userId", responseData.userId);
+      setToken(responseData.token);
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
     } catch (err) {
       console.log(err);
       alert("login failed");

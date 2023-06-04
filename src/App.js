@@ -5,46 +5,21 @@ import LoginPage from "./Pages/LoginPage/LoginPage";
 import RegisterPage from "./Pages/LoginPage/RegisterPage";
 import HomePage from "./Pages/HomePage/HomePage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState } from "react";
 import DonutGraph from "./Pages/ExpenseTracker/DonutGraph";
-// import useUserId from "./Components/useUserId";
-
-// function setUserId(userId) {
-//   sessionStorage.setItem("userId", JSON.stringify(userId));
-// }
-
-// function getUserId() {}
+import { useState } from "react";
 
 function App(props) {
-  const [loggedin, setLoggedin] = useState(false);
-  // const [userId, setUserId] = useState(null);
-  // const { userId, setUserId } = useUserId();
-  // const userId = getUserId();
-
-  // `  if (!userId) {
-  //     return (
-  //       <ChakraProvider>
-  //         <Router>
-  //           <LoginPage setLoggedin={setLoggedin} setUserId={setUserId} />
-  //         </Router>
-  //       </ChakraProvider>
-  //     );
-  //   }`
+  const [token, setToken] = useState(sessionStorage.getItem("token"));
 
   return (
     <ChakraProvider>
       <Router>
-        <NavBar loggedin={loggedin} setLoggedin={setLoggedin} userId={userId} />
-        <HomePage userId={userId} />
+        <NavBar token={token} setToken={setToken} />
+        <HomePage />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route
-            path="/login"
-            element={
-              <LoginPage setLoggedin={setLoggedin} setUserId={setUserId} />
-            }
-          />
+          <Route path="/login" element={<LoginPage setToken={setToken} />} />
           <Route path="/financialtracker" element={<DonutGraph />} />
           {/* <Route path="/financialtracker" element={<FinanceTrackerPage />} /> */}
         </Routes>

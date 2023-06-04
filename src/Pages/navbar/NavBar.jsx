@@ -1,9 +1,11 @@
+import { useState, useEffect } from "react";
 import Logo from "../../Resources/logoSample.png";
 import "./navbarStyle.css";
 import { useNavigate } from "react-router-dom";
 
-function NavBar({ setLoggedin, loggedin }) {
+function NavBar({ token, setToken }) {
   const navigate = useNavigate();
+
   return (
     <>
       <nav className="navbar">
@@ -17,7 +19,7 @@ function NavBar({ setLoggedin, loggedin }) {
               <a onClick={() => navigate("/")}>Home</a>
             </li>
 
-            {loggedin && (
+            {token != null && (
               <li className="services">
                 <a>Services</a>
                 <ul className="dropdown">
@@ -30,11 +32,15 @@ function NavBar({ setLoggedin, loggedin }) {
               </li>
             )}
 
-            {loggedin && (
+            {token != null && (
               <li>
                 <a
                   onClick={() => {
-                    setLoggedin(false);
+                    // sessionStorage.setItem("token", null);
+                    // sessionStorage.setItem("userId", null);
+                    sessionStorage.removeItem("token");
+                    sessionStorage.removeItem("userId");
+                    setToken();
                     navigate("/");
                   }}
                 >
@@ -43,7 +49,7 @@ function NavBar({ setLoggedin, loggedin }) {
               </li>
             )}
 
-            {!loggedin && (
+            {token == null && (
               <li>
                 <a onClick={() => (window.location = "/login")}>Login</a>
               </li>
