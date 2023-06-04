@@ -3,11 +3,14 @@ import PasswordInput from "./Input Components/PasswordInput";
 import { Button, Container, Text, Link, Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { PropTypes } from "prop-types";
 
-function LoginPage({ setLoggedin }) {
+function LoginPage({ setLoggedin, setUserId }) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
+
+  // const [token, setUserId] = useState(null);
   const navigate = useNavigate();
 
   const loginHandler = async (event) => {
@@ -28,7 +31,10 @@ function LoginPage({ setLoggedin }) {
       console.log(responseData);
       alert("logged in successful");
       // const value = true;
+      setUserId(responseData.userId);
+      alert(responseData.userId);
       setLoggedin(true);
+      // console.log(userId);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -73,4 +79,9 @@ function LoginPage({ setLoggedin }) {
     </Container>
   );
 }
+
+LoginPage.propTypes = {
+  setUserId: PropTypes.func.isRequired,
+};
+
 export default LoginPage;
