@@ -1,5 +1,5 @@
-import { Flex, Text, Heading, Box } from "@chakra-ui/react";
-
+import { Flex, Button, Heading, Box, Icon, Spacer } from "@chakra-ui/react";
+import { FiTrash2 } from "react-icons/fi";
 const obj = [
   {
     category: "Savings",
@@ -30,16 +30,22 @@ function Transaction({ category }) {
     return null;
   } else {
     return (
-      <Flex justify="center" bg="gray.50" py="2">
+      <Flex justify="space-between" bg="gray.50" py="2">
         <Box
           p={1}
-          borderRightWidth={5}
-          borderRightColor={category.color ?? "#f9c7df"}
-          borderRightRadius={1}
+          borderLeftWidth={5}
+          borderLeftColor={category.color ?? "#f9c7df"}
+          borderLeftRadius={1}
           width="100%"
           fontWeight="bold"
+          display="flex"
+          alignItems="center"
         >
           {category.category ?? ""}
+          <Spacer />
+          <Button colorScheme="gray" bg="gray.50" mr="5px">
+            <Icon as={FiTrash2} />
+          </Button>
         </Box>
       </Flex>
     );
