@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Logo from "../../Resources/logoSample.png";
 import "./navbarStyle.css";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@chakra-ui/react";
 
 function NavBar({ token, setToken }) {
   const navigate = useNavigate();
@@ -16,17 +17,31 @@ function NavBar({ token, setToken }) {
         <ul className="nav-links">
           <div className="menu">
             <li>
-              <a onClick={() => navigate("/")}>Home</a>
+              <Button
+                colorScheme="#ffcc80"
+                variant="link"
+                color="black"
+                onClick={() => navigate("/")}
+              >
+                Home
+              </Button>
             </li>
 
             {token != null && (
               <li className="services">
-                <a>Services</a>
+                <Button colorScheme="#ffcc80" variant="link" color="black">
+                  Services
+                </Button>
                 <ul className="dropdown">
                   <li>
-                    <a onClick={() => navigate("/financialtracker")}>
-                      Log Transaction{" "}
-                    </a>
+                    <Button
+                      colorScheme="#ffcc80"
+                      variant="link"
+                      color="black"
+                      onClick={() => navigate("/financialtracker")}
+                    >
+                      Log Transaction
+                    </Button>
                   </li>
                 </ul>
               </li>
@@ -34,7 +49,10 @@ function NavBar({ token, setToken }) {
 
             {token != null && (
               <li>
-                <a
+                <Button
+                  colorScheme="#ffcc80"
+                  variant="link"
+                  color="black"
                   onClick={() => {
                     // sessionStorage.setItem("token", null);
                     // sessionStorage.setItem("userId", null);
@@ -45,13 +63,20 @@ function NavBar({ token, setToken }) {
                   }}
                 >
                   Logout
-                </a>
+                </Button>
               </li>
             )}
 
             {token == null && (
               <li>
-                <a onClick={() => (window.location = "/login")}>Login</a>
+                <Button
+                  colorScheme="#ffcc80"
+                  variant="link"
+                  color="black"
+                  onClick={() => (window.location = "/login")}
+                >
+                  Login
+                </Button>
               </li>
             )}
           </div>
