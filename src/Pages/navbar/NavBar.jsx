@@ -40,7 +40,16 @@ function NavBar({ token, setToken }) {
                       color="black"
                       onClick={() => navigate("/financialtracker")}
                     >
-                      Log Transaction
+                      Transaction Page
+                    </Button>
+                    <Button
+                      mt="5px"
+                      colorScheme="#ffcc80"
+                      variant="link"
+                      color="black"
+                      onClick={() => navigate("/stocksoverview")}
+                    >
+                      Stocks Overview
                     </Button>
                   </li>
                 </ul>

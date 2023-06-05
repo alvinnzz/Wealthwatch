@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DonutGraph from "./Pages/ExpenseTracker/DonutGraph";
 import { useState } from "react";
 import TipGenerator from "./Pages/TipGenerator";
+import StocksOverview from "./Pages/StocksPage/StocksOverview";
+import StocksDetailedPage from "./Pages/StocksPage/StocksDetailedPage";
 
 function App(props) {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
@@ -20,6 +22,11 @@ function App(props) {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage setToken={setToken} />} />
           <Route path="/financialtracker" element={<DonutGraph />} />
+          <Route path="/stocksoverview" element={<StocksOverview />} />
+          <Route
+            path="/stockdetails/:symbol"
+            element={<StocksDetailedPage />}
+          />
           {/* <Route path="/financialtracker" element={<FinanceTrackerPage />} /> */}
         </Routes>
       </Router>
