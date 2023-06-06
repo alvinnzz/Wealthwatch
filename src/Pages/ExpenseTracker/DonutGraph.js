@@ -31,7 +31,7 @@ const config = {
   },
 };
 
-function DonutGraph() {
+function DonutGraph({ transactionHistory, setTransactionHistory }) {
   return (
     <>
       <SimpleGrid ml="5%" justify="center" columns={2} spacing={5}>
@@ -53,7 +53,10 @@ function DonutGraph() {
           <Labels></Labels>
         </Container>
         <Container m="20px" justify="center">
-          <TransactionInput></TransactionInput>
+          <TransactionInput
+            setTransactionHistory={setTransactionHistory}
+            transactionHistory={transactionHistory}
+          ></TransactionInput>
         </Container>
       </SimpleGrid>
     </>

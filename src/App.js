@@ -13,15 +13,30 @@ import StocksDetailedPage from "./Pages/StocksPage/StocksDetailedPage";
 
 function App(props) {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
+  const [transactionHistory, setTransactionHistory] = useState([]);
+
   return (
     <ChakraProvider>
       <Router>
-        <NavBar token={token} setToken={setToken} />
+        <NavBar
+          token={token}
+          setToken={setToken}
+          setTransactionHistory={setTransactionHistory}
+          transactionHistory={transactionHistory}
+        />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage setToken={setToken} />} />
-          <Route path="/financialtracker" element={<DonutGraph />} />
+          <Route
+            path="/financialtracker"
+            element={
+              <DonutGraph
+                transactionHistory={transactionHistory}
+                setTransactionHistory={setTransactionHistory}
+              />
+            }
+          />
           <Route path="/stocksoverview" element={<StocksOverview />} />
           <Route
             path="/stockdetails/:symbol"

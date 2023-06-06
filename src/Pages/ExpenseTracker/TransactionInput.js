@@ -7,20 +7,23 @@ import {
   Select,
   Container,
   Button,
+  NumberInput,
+  NumberInputField,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import TransactionHistory from "./TransactionHistory";
 import React, { useState } from "react";
 import axios from "axios";
 
-function TransactionInput() {
+function TransactionInput({ transactionHistory, setTransactionHistory }) {
   const { register, handleSubmit, resetField } = useForm();
-
 
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
-  
+
+  const history = transactionHistory;
+
   const handleCategoryChange = (event) => {
     const value = event.target.value;
     setCategory(value);
@@ -46,18 +49,22 @@ function TransactionInput() {
           description: description,
           category: category,
           amount: amount,
-          creator: sessionStorage.getItem("userId")
+          creator: sessionStorage.getItem("userId"),
         }),
       });
 
       const responseData = await response.json();
-      console.log(responseData);
-      
+
+      let temp = history;
+      temp.unshift(responseData.transaction);
+      setTransactionHistory(temp);
+      console.log(transactionHistory);
+
       alert("Added transaction successfully!");
-       // Reset the input fields
-       resetField("category");
-       resetField("description");
-       resetField("amount");
+      // Reset the input fields
+      resetField("category");
+      resetField("description");
+      resetField("amount");
     } catch (err) {
       console.log(err);
       alert("Adding transaction failed!");
@@ -77,6 +84,8 @@ function TransactionInput() {
           >
             <option value="Food">Food</option>
             <option value="Gifts">Gifts</option>
+            <option value="Bills">Bills</option>
+            <option value="Entertainment">Entertainment</option>
             <option value="Transport">Transport</option>
             <option value="Others">Others</option>
           </Select>
@@ -95,7 +104,13 @@ function TransactionInput() {
               mt="5px"
               ml="5px"
             />
-            <Input {...register("amount")} placeholder="Amount" mt="5px" onChange={handleAmountChange} />
+            <Input
+              {...register("amount")}
+              placeholder="Amount"
+              mt="5px"
+              onChange={handleAmountChange}
+              type="number"
+            />
           </InputGroup>
           <Button mt="20px" type="submit" width="100%" bg="#ffcc90">
             Add transaction
