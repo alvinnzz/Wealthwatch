@@ -10,61 +10,70 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import TransactionHistory from "./TransactionHistory";
+import React, { useState } from "react";
 import axios from "axios";
 
 function TransactionInput() {
   const { register, handleSubmit, resetField } = useForm();
 
-  // const onSubmit = (data) => {
-  //   console.log(data);
-  // };
 
-  const onSubmit = (data) => {
-    axios
-      .post("http://localhost:5001/api/transactions", data)
-      .then((response) => {
-        console.log(response.data); // handle the response from the backend
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [amount, setAmount] = useState("");
+  
+  const handleCategoryChange = (event) => {
+    const value = event.target.value;
+    setCategory(value);
+  };
+  const handleDescriptionChange = (event) => {
+    const value = event.target.value;
+    setDescription(value);
+  };
+  const handleAmountChange = (event) => {
+    const value = event.target.value;
+    setAmount(value);
   };
 
-  // const onSubmit = async (data) => {
-  //   data.preventDefault();
-  //   try {
-  //     const response = await fetch("http://localhost:5001/api/users/api/transactions", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         email: email,
-  //         password: password,
-  //       }),
-  //     });
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5001/api/transactions/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          description: description,
+          category: category,
+          amount: amount,
+          creator: sessionStorage.getItem("userId")
+        }),
+      });
 
-  //     const responseData = await response.json();
-  //     console.log(responseData);
-  //     alert("logged in successful");
-  //     // const value = true;
-  //     setLoggedin(true);
-  //     navigate("/");
-  //   } catch (err) {
-  //     console.log(err);
-  //     alert("login failed");
-  //   }
-  // };
+      const responseData = await response.json();
+      console.log(responseData);
+      
+      alert("Added transaction successfully!");
+       // Reset the input fields
+       resetField("category");
+       resetField("description");
+       resetField("amount");
+    } catch (err) {
+      console.log(err);
+      alert("Adding transaction failed!");
+    }
+  };
 
   return (
     <Box>
       <Heading align="center">Transaction</Heading>
-      <form id="form" align="center" onSubmit={handleSubmit(onSubmit)}>
+      <form id="form" align="center" onSubmit={submitHandler}>
         <Container width="150%">
           <Select
             placeholder="Select option"
             mt="20px"
             {...register("category")}
+            onChange={handleCategoryChange}
           >
             <option value="Food">Food</option>
             <option value="Gifts">Gifts</option>
@@ -75,6 +84,7 @@ function TransactionInput() {
             {...register("description")}
             placeholder="Description"
             mt="5px"
+            onChange={handleDescriptionChange}
           />
           <InputGroup>
             <InputLeftElement
@@ -85,7 +95,7 @@ function TransactionInput() {
               mt="5px"
               ml="5px"
             />
-            <Input {...register("amount")} placeholder="Amount" mt="5px" />
+            <Input {...register("amount")} placeholder="Amount" mt="5px" onChange={handleAmountChange} />
           </InputGroup>
           <Button mt="20px" type="submit" width="100%" bg="#ffcc90">
             Add transaction
