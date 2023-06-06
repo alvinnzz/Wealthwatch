@@ -1,0 +1,23 @@
+@keyframes roll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(
+      calc(-100%)
+    ); /* Adjust the number of tips to display */
+  }
+}
+
+.rolling {
+  display: flex;
+  flex-direction: column; /* Display tips in a single column */
+  align-items: center; /* Center tips vertically */
+}
+
+.rolling > div {
+  animation: roll 0.5s infinite; /* Adjust the rolling duration */
+  animation-timing-function: steps(10);
+  overflow: hidden; /* Ensure that tips do not exceed the box */
+  white-space: nowrap; /* Display tips in a single line */
+}

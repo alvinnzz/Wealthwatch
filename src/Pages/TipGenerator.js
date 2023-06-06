@@ -1,35 +1,100 @@
-import { Center, Icon, Button, Spacer } from "@chakra-ui/react";
+// import { Center, Icon, Button, Spacer } from "@chakra-ui/react";
+// import { useState } from "react";
+// import { GrFormRefresh } from "react-icons/gr";
+
+// function TipGenerator() {
+//   const [randomTip, setRandomTip] = useState(
+//     Math.floor(Math.random() * tips.length)
+//   );
+
+//   const randomIndex = Math.floor(Math.random() * tips.length);
+//   const tip = tips[randomIndex];
+
+//   return (
+//     <>
+//       <Center
+//         bg="gray.50"
+//         p={4}
+//         color="black"
+//         border="1px"
+//         borderColor="black"
+//         width="35%"
+//         mx="auto"
+//       >
+//         {tip}
+//         <Spacer />
+//         <Button
+//           bg="gray.300"
+//           variant="solid"
+//           ml="12px"
+//           height="25px"
+//           width="50px"
+//           onClick={() => setRandomTip(randomIndex)}
+//         >
+//           <Icon as={GrFormRefresh} />
+//         </Button>
+//       </Center>
+//     </>
+//   );
+// }
+import { Center, Icon, Button, Spacer, Box, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { GrFormRefresh } from "react-icons/gr";
+import { motion } from "framer-motion"; // Import the motion component from the framer-motion library
+import "./TipGenerator.css"; // Import a CSS file for custom styles (create this file in the same directory)
 
 function TipGenerator() {
   const [randomTip, setRandomTip] = useState(
     Math.floor(Math.random() * tips.length)
   );
 
-  const randomIndex = Math.floor(Math.random() * tips.length);
-  const tip = tips[randomIndex];
+  const randomIndexes = [
+    randomTip - 2 >= 0 ? randomTip - 2 : tips.length + (randomTip - 2),
+    randomTip - 1 >= 0 ? randomTip - 1 : tips.length + (randomTip - 1),
+    randomTip,
+    (randomTip + 1) % tips.length,
+    (randomTip + 2) % tips.length,
+  ];
+  const rollingTips = randomIndexes.map((index) => tips[index]);
+
+  const [rolling, setRolling] = useState(false);
+
+  const handleClick = () => {
+    if (rolling) return;
+    setRolling(true);
+    setTimeout(() => {
+      setRolling(false);
+      setRandomTip((randomTip) => (randomTip + 1) % tips.length);
+    }, 500); // Adjust the delay time for rolling to complete
+  };
 
   return (
     <>
       <Center
+        as={motion.div}
         bg="gray.50"
         p={4}
+        height="150px"
         color="black"
         border="1px"
         borderColor="black"
-        width="35%"
+        width="30%"
+        overflow="hidden"
         mx="auto"
+        className={rolling ? "rolling" : ""}
       >
-        {tip}
-        <Spacer />
+        {rolling ? (
+          rollingTips.map((tip, index) => <div key={index}>{tip}</div>)
+        ) : (
+          <Box>{tips[randomTip]}</Box>
+        )}
+      </Center>
+      <Center mb="40px">
         <Button
           bg="gray.300"
           variant="solid"
-          ml="12px"
-          height="25px"
-          width="50px"
-          onClick={() => setRandomTip(randomIndex)}
+          mt={4} // Add margin-top to create space below the Center component
+          onClick={handleClick}
         >
           <Icon as={GrFormRefresh} />
         </Button>

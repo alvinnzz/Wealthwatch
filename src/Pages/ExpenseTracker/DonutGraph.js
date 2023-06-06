@@ -4,6 +4,7 @@ import { Doughnut } from "react-chartjs-2";
 import Labels from "./Labels";
 import TransactionInput from "./TransactionInput";
 import NavBar from "../navbar/NavBar";
+import TipGenerator from "../TipGenerator";
 
 Chart.register(ArcElement);
 
