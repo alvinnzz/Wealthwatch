@@ -75,10 +75,11 @@ function TipGenerator() {
         bg="gray.50"
         p={4}
         height="150px"
+        mt="20px"
         color="black"
         border="1px"
         borderColor="black"
-        width="30%"
+        width="50%"
         overflow="hidden"
         mx="auto"
         className={rolling ? "rolling" : ""}
