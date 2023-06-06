@@ -1,4 +1,4 @@
-import { Container, Text, SimpleGrid } from "@chakra-ui/react";
+import { Container, Text, SimpleGrid, GridItem, Box } from "@chakra-ui/react";
 import Labels from "./Labels";
 import TransactionInput from "./TransactionInput";
 import TransactionHistory from "./TransactionHistory";
@@ -67,12 +67,19 @@ function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
 
   return (
     <>
-      <SimpleGrid ml="5%" justify="center" columns={4} spacing={10}>
-        <Container></Container>
-        <Container m="20px" centerContent mr="50px">
+      <SimpleGrid
+        ml="5%"
+        justify="center"
+        columns={4}
+        spacing={50}
+        overflowX="scrollable"
+      >
+        <GridItem colSpan="1"></GridItem>
+
+        <GridItem m="20px" centerContent mt="50px" minW="600px" ml="-300px">
           <DoughnutGraph graphData={graphData}></DoughnutGraph>
 
-          <Text fontSize="4xl" position="absolute" bottom="56%">
+          <Text fontSize="4xl" position="absolute" bottom="56%" ml="15%">
             Total
           </Text>
           <Text
@@ -81,13 +88,15 @@ function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
             bottom="50%"
             color="green.300"
             fontWeight="bold"
+            ml="13%"
           >
             ${graphData[6]}
           </Text>
-
-          <Labels graphData={graphData}></Labels>
-        </Container>
-        <Container m="20px" justify="center" spacing={30}>
+          <Box ml="12%" w="75%">
+            <Labels graphData={graphData}></Labels>
+          </Box>
+        </GridItem>
+        <GridItem m="20px" justify="center" spacing={30}>
           <TransactionInput
             setTransactionHistory={setTransactionHistory}
             transactionHistory={transactionHistory}
@@ -96,8 +105,9 @@ function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
             transactionHistory={transactionHistory}
             setTransactionHistory={setTransactionHistory}
           />
-        </Container>
-        <Container></Container>
+        </GridItem>
+
+        <GridItem colSpan="1"></GridItem>
       </SimpleGrid>
     </>
   );

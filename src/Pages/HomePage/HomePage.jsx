@@ -4,9 +4,9 @@ import StockChart from "../../Resources/StockChart.png";
 import StockPrices from "../../Resources/StockPrices.png";
 import { Box, Text, Grid, GridItem, Heading, Img } from "@chakra-ui/react";
 
-function HomePage({ userId }) {
+function HomePage() {
   return (
-    <Grid templateColumns="repeat(2,1fr)">
+    <Grid templateColumns="repeat(2,1fr)" mt="30px">
       <GridItem colSpan="1">
         <Box
           minH="200px"
