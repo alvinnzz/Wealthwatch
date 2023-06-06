@@ -1,7 +1,7 @@
 import { Chart, ArcElement } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { useState, useEffect } from "react";
-import { Box, Container } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 
 Chart.register(ArcElement);
 

@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Logo from "../../Resources/logoSample.png";
 import "./navbarStyle.css";
 import { useNavigate } from "react-router-dom";

@@ -1,12 +1,4 @@
-import {
-  Flex,
-  Button,
-  Heading,
-  Box,
-  Icon,
-  Spacer,
-  Input,
-} from "@chakra-ui/react";
+import { Flex, Button, Heading, Box, Icon, Input } from "@chakra-ui/react";
 import { FiTrash2 } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { LuLoader2 } from "react-icons/lu";
@@ -49,6 +41,7 @@ function TransactionHistory({ transactionHistory, setTransactionHistory }) {
           (transaction) =>
             transaction && (
               <TransactionCell
+                key={transaction.id}
                 transaction={transaction}
                 transactionHistory={transactionHistory}
                 setTransactionHistory={setTransactionHistory}
@@ -105,10 +98,11 @@ function TransactionCell({
     <Flex justify="space-between" bg="gray.50" py="2">
       <Box
         p={1}
-        borderLeftWidth={5}
+        borderLeftWidth={6}
         borderLeftColor={color}
         borderLeftRadius={1}
         width="100%"
+        fontSize="20px"
         fontWeight="bold"
         display="flex"
         alignItems="center"

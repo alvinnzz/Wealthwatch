@@ -1,8 +1,6 @@
-import { Grid, Container, Text, Center, SimpleGrid } from "@chakra-ui/react";
+import { Container, Text, SimpleGrid } from "@chakra-ui/react";
 import Labels from "./Labels";
 import TransactionInput from "./TransactionInput";
-import NavBar from "../navbar/NavBar";
-import TipGenerator from "../TipGenerator";
 import TransactionHistory from "./TransactionHistory";
 import { useEffect, useState } from "react";
 import DoughnutGraph from "./DoughnutGraph";
@@ -69,29 +67,27 @@ function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
 
   return (
     <>
-      <SimpleGrid ml="5%" justify="center" columns={2} spacing={5}>
-        <Container m="20px" centerContent>
+      <SimpleGrid ml="5%" justify="center" columns={4} spacing={10}>
+        <Container></Container>
+        <Container m="20px" centerContent mr="50px">
           <DoughnutGraph graphData={graphData}></DoughnutGraph>
-          <Center>
-            <Text fontSize="2xl" position="absolute" top="38%">
-              Total
-              <Text
-                fontSize="4xl"
-                position="absolute"
-                top="130%" // Adjust the vertical position as needed
-                left="50%" // Center the text horizontally
-                transform="translate(-50%, -50%)" // Center the text both vertically and horizontally
-                color="green.300"
-                fontWeight="bold"
-              >
-                ${graphData[6]}
-              </Text>
-            </Text>
-          </Center>
+
+          <Text fontSize="4xl" position="absolute" bottom="56%">
+            Total
+          </Text>
+          <Text
+            fontSize="5xl"
+            position="absolute"
+            bottom="50%"
+            color="green.300"
+            fontWeight="bold"
+          >
+            ${graphData[6]}
+          </Text>
 
           <Labels graphData={graphData}></Labels>
         </Container>
-        <Container m="20px" justify="center">
+        <Container m="20px" justify="center" spacing={30}>
           <TransactionInput
             setTransactionHistory={setTransactionHistory}
             transactionHistory={transactionHistory}
@@ -101,6 +97,7 @@ function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
             setTransactionHistory={setTransactionHistory}
           />
         </Container>
+        <Container></Container>
       </SimpleGrid>
     </>
   );

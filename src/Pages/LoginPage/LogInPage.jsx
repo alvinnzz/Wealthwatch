@@ -3,7 +3,6 @@ import PasswordInput from "./Input Components/PasswordInput";
 import { Button, Container, Text, Link, Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PropTypes } from "prop-types";
 
 function LoginPage({ setToken }) {
   const [email, setEmail] = useState(null);
@@ -77,9 +76,5 @@ function LoginPage({ setToken }) {
     </Container>
   );
 }
-
-LoginPage.propTypes = {
-  setUserId: PropTypes.func.isRequired,
-};
 
 export default LoginPage;

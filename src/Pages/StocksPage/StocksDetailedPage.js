@@ -1,4 +1,3 @@
-import { Text, useStatStyles } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import finnHub from "./apis/finnHub";
 import { useEffect, useState } from "react";

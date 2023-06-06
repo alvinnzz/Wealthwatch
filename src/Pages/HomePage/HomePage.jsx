@@ -1,23 +1,8 @@
 import TipGenerator from "../TipGenerator";
-import NavBar from "../navbar/NavBar";
 import DonutGraph from "../../Resources/DonutGraph.png";
 import StockChart from "../../Resources/StockChart.png";
 import StockPrices from "../../Resources/StockPrices.png";
-
-import {
-  Button,
-  ButtonGroup,
-  Box,
-  Container,
-  Center,
-  Text,
-  Grid,
-  GridItem,
-  SimpleGrid,
-  Spacer,
-  Heading,
-  Img,
-} from "@chakra-ui/react";
+import { Box, Text, Grid, GridItem, Heading, Img } from "@chakra-ui/react";
 
 function HomePage({ userId }) {
   return (

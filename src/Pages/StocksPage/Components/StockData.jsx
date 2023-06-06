@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import finnHub from "../apis/finnHub";
 import { Text, SimpleGrid } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 
 function StockData({ symbol }) {
   const [stockData, setStockData] = useState();
@@ -66,10 +65,7 @@ function StockData({ symbol }) {
           </div>
           <div>
             <Text color="teal">
-              URL:{" "}
-              <Link href={stockData.weburl} isExternal>
-                {stockData.weburl}
-              </Link>
+              URL: <a href={stockData.weburl}>{stockData.weburl}</a>
             </Text>
           </div>
         </SimpleGrid>

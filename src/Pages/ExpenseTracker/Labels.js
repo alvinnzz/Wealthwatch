@@ -1,4 +1,4 @@
-import { Box, Spacer, Flex } from "@chakra-ui/react";
+import { Spacer, Flex } from "@chakra-ui/react";
 
 function Labels({ graphData }) {
   const copy = [...graphData];
@@ -39,12 +39,13 @@ function Labels({ graphData }) {
           key={index}
           p={1}
           bg="gray.50"
-          borderLeftWidth={5}
+          borderLeftWidth={6}
           borderLeftColor={color}
           borderLeftRadius={1}
           height="40px"
           width="100%"
           fontWeight="bold"
+          fontSize="20px"
         >
           {category}
           <Spacer />

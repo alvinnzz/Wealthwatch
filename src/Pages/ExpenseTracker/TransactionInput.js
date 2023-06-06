@@ -7,13 +7,9 @@ import {
   Select,
   Container,
   Button,
-  NumberInput,
-  NumberInputField,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import TransactionHistory from "./TransactionHistory";
 import React, { useState } from "react";
-import axios from "axios";
 
 function TransactionInput({ transactionHistory, setTransactionHistory }) {
   const { register, handleSubmit, resetField } = useForm();

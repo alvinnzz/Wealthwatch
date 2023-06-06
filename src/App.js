@@ -6,7 +6,6 @@ import RegisterPage from "./Pages/LoginPage/RegisterPage";
 import HomePage from "./Pages/HomePage/HomePage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState } from "react";
-import TipGenerator from "./Pages/TipGenerator";
 import StocksOverview from "./Pages/StocksPage/StocksOverview";
 import StocksDetailedPage from "./Pages/StocksPage/StocksDetailedPage";
 
