@@ -1,52 +1,59 @@
-import { Flex, Box, Text, Container } from "@chakra-ui/react";
+import { Box, Spacer, Flex } from "@chakra-ui/react";
 
-const obj = [
-  {
-    category: "Savings",
-    color: "#f9c74f",
-    percent: 45,
-  },
-  {
-    category: "Expense",
-    color: "#f9c74f",
-    percent: 25,
-  },
-  { category: "Investment", color: "#f9c74f", percent: 30 },
-];
+function Labels({ graphData }) {
+  const copy = [...graphData];
+  copy.pop();
+  return copy.map((value, index) => {
+    if (value !== 0) {
+      let color;
+      let category;
+      switch (index) {
+        case 0:
+          category = "Food";
+          color = "#ad2c2a";
+          break;
+        case 1:
+          category = "Gifts";
+          color = "#e3da29";
+          break;
+        case 2:
+          category = "Transport";
+          color = "#34ad26";
+          break;
+        case 3:
+          category = "Bills";
+          color = "#8c59d4";
+          break;
+        case 4:
+          category = "Entertainment";
+          color = "#d4597e";
+          break;
+        default:
+          category = "Others";
+          color = "#29c5bf";
+          break;
+      }
 
-function Labels() {
-  return (
-    <Container mt="25px">
-      {obj.map((v, i) => (
-        <LabelComponent key={i} data={v}></LabelComponent>
-      ))}
-    </Container>
-  );
-}
-
-function LabelComponent({ data }) {
-  if (!data) return <></>;
-  return (
-    <Flex
-      direction="row"
-      justifyContent="space-between"
-      alignItems="center"
-      bg="gray.50"
-    >
-      <Box
-        p={1}
-        borderLeftWidth={5}
-        borderLeftColor={data.color ?? "#f9c7df"}
-        borderLeftRadius={1}
-        width="100px"
-        fontWeight="bold"
-      >
-        {data.category ?? ""}
-      </Box>
-      <Box p={2}>{data.percent ?? 0}</Box>
-      {/* Add more CategoryItem components for additional categories */}
-    </Flex>
-  );
+      return (
+        <Flex
+          key={index}
+          p={1}
+          bg="gray.50"
+          borderLeftWidth={5}
+          borderLeftColor={color}
+          borderLeftRadius={1}
+          height="40px"
+          width="100%"
+          fontWeight="bold"
+        >
+          {category}
+          <Spacer />
+          {Math.floor(value * 100) / 100}
+        </Flex>
+      );
+    }
+    return null;
+  });
 }
 
 export default Labels;

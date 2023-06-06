@@ -1,11 +1,10 @@
 import NavBar from "./Pages/navbar/NavBar";
-import FinanceTrackerPage from "./Pages/TransactionsPage/FinanceTrackerPage";
+import FinanceTrackerPage from "./Pages/ExpenseTracker/FinanceTrackerPage";
 import { ChakraProvider } from "@chakra-ui/react";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import RegisterPage from "./Pages/LoginPage/RegisterPage";
 import HomePage from "./Pages/HomePage/HomePage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import DonutGraph from "./Pages/ExpenseTracker/DonutGraph";
 import { useState } from "react";
 import TipGenerator from "./Pages/TipGenerator";
 import StocksOverview from "./Pages/StocksPage/StocksOverview";
@@ -31,7 +30,7 @@ function App(props) {
           <Route
             path="/financialtracker"
             element={
-              <DonutGraph
+              <FinanceTrackerPage
                 transactionHistory={transactionHistory}
                 setTransactionHistory={setTransactionHistory}
               />

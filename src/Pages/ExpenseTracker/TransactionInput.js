@@ -22,8 +22,6 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
 
-  const history = transactionHistory;
-
   const handleCategoryChange = (event) => {
     const value = event.target.value;
     setCategory(value);
@@ -54,17 +52,15 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
       });
 
       const responseData = await response.json();
-
-      let temp = history;
+      let temp = transactionHistory;
       temp.unshift(responseData.transaction);
       setTransactionHistory(temp);
-      console.log(transactionHistory);
-
       alert("Added transaction successfully!");
       // Reset the input fields
       resetField("category");
       resetField("description");
       resetField("amount");
+      window.location.reload();
     } catch (err) {
       console.log(err);
       alert("Adding transaction failed!");
@@ -109,7 +105,6 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
               placeholder="Amount"
               mt="5px"
               onChange={handleAmountChange}
-              type="number"
             />
           </InputGroup>
           <Button mt="20px" type="submit" width="100%" bg="#ffcc90">
@@ -117,7 +112,6 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
           </Button>
         </Container>
       </form>
-      <TransactionHistory />
     </Box>
   );
 }

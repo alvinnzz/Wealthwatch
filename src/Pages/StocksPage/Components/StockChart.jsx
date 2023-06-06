@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Chart from "react-apexcharts";
 import { Stack, Button } from "@chakra-ui/react";
-import { color } from "framer-motion";
 
 function StockChart({ chartData, symbol }) {
   const [dateFormat, setDateFormat] = useState("24h");
