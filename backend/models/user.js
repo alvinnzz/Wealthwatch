@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId, 
         required: true, 
         ref: "Transaction"
+    }],
+    stocks: [{
+        type: String,
+        required: true
     }]
 });
 
