@@ -19,7 +19,7 @@ import { FiTrash2 } from "react-icons/fi";
 
 function StockTable() {
   const [stock, setStock] = useState([]);
-  const { watchList, deleteStock } = useContext(Context);
+  const {deleteStock , watchList} = useContext(Context);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,6 +35,7 @@ function StockTable() {
             });
           })
         );
+        console.log("fetched successfully");
 
         const data = responses.map((response) => {
           return { data: response.data, symbol: response.config.params.symbol };
