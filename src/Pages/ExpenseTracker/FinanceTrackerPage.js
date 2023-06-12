@@ -77,21 +77,22 @@ function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
         <GridItem colSpan="1"></GridItem>
 
         <GridItem m="20px" centerContent mt="50px" minW="600px" ml="-300px">
-          <DoughnutGraph graphData={graphData}></DoughnutGraph>
+          <Container centerContent>
+            <DoughnutGraph graphData={graphData}></DoughnutGraph>
 
-          <Text fontSize="4xl" position="absolute" bottom="56%" ml="15%">
-            Total
-          </Text>
-          <Text
-            fontSize="5xl"
-            position="absolute"
-            bottom="50%"
-            color="green.300"
-            fontWeight="bold"
-            ml="13%"
-          >
-            ${graphData[6]}
-          </Text>
+            <Text fontSize="4xl" position="absolute" bottom="56%">
+              Total
+            </Text>
+            <Text
+              fontSize="5xl"
+              position="absolute"
+              bottom="50%"
+              color="green.300"
+              fontWeight="bold"
+            >
+              ${graphData[6]}
+            </Text>
+          </Container>
           <Box ml="12%" w="75%">
             <Labels graphData={graphData}></Labels>
           </Box>

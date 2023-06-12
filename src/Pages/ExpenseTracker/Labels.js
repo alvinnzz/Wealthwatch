@@ -48,8 +48,7 @@ function Labels({ graphData }) {
           fontSize="20px"
         >
           {category}
-          <Spacer />
-          {Math.floor(value * 100) / 100}
+          <Spacer />${Math.floor(value * 100) / 100}
         </Flex>
       );
     }

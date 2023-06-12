@@ -1,4 +1,12 @@
-import { Flex, Button, Heading, Box, Icon, Input } from "@chakra-ui/react";
+import {
+  Flex,
+  Button,
+  Heading,
+  Box,
+  Icon,
+  Input,
+  Spacer,
+} from "@chakra-ui/react";
 import { FiTrash2 } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { LuLoader2 } from "react-icons/lu";
@@ -24,7 +32,7 @@ function TransactionHistory({ transactionHistory, setTransactionHistory }) {
   useEffect(() => FilterData(searchText), [searchText, transactionHistory]);
 
   return (
-    <Flex direction="column" py="6" justify="center">
+    <Flex direction="column" py="6" justify="center" w="150%  ">
       <Heading py="3" align="center">
         History
       </Heading>
@@ -108,6 +116,7 @@ function TransactionCell({
         alignItems="center"
       >
         {transaction.description ?? ""}
+        <Spacer />${transaction.amount ?? ""}
         <Box ml="auto">
           {!deleting && (
             <Button
@@ -120,6 +129,7 @@ function TransactionCell({
               <Icon as={FiTrash2} />
             </Button>
           )}
+
           {deleting && (
             <Button
               bg="transparent"

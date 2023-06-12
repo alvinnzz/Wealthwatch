@@ -66,7 +66,7 @@ function SearchBar() {
   };
 
   return (
-    <Center position="relative" mt="4em" mb="5em">
+    <Center position="relative" mt="1em" mb="5em">
       <Input
         bg="rgba(145, 158, 171, 0.04)"
         id="search"
