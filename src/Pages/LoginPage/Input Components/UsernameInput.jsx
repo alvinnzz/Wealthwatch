@@ -10,14 +10,13 @@ function UsernameInput({ setUsername }) {
     <FormControl isRequired>
       <Input
         className="form__input"
-        type="text"
         id="username"
-        placeholder="Username"
-        ml="47px"
-        size="lg"
+        placeholder="username"
         width="80%"
+        size="lg"
         borderColor="blackAlpha.600"
         mt="15px"
+        ml="10%"
         onChange={handleUsernameChange}
       />
     </FormControl>
