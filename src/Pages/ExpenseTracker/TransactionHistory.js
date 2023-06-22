@@ -6,6 +6,7 @@ import {
   Icon,
   Input,
   Spacer,
+  Container,
 } from "@chakra-ui/react";
 import { FiTrash2 } from "react-icons/fi";
 import { useState, useEffect } from "react";
@@ -32,32 +33,34 @@ function TransactionHistory({ transactionHistory, setTransactionHistory }) {
   useEffect(() => FilterData(searchText), [searchText, transactionHistory]);
 
   return (
-    <Flex direction="column" py="6" justify="center" w="150%  ">
-      <Heading py="3" align="center">
-        History
-      </Heading>
-      <Input
-        placeholder="Search"
-        value={searchText}
-        onChange={(e) => {
-          setSearchText(e.target.value);
-          FilterData(e.target.value);
-        }}
-      ></Input>
-      <Box maxH="310px" overflow="overlay" mt="2px">
-        {filteredTxn.map(
-          (transaction) =>
-            transaction && (
-              <TransactionCell
-                key={transaction.id}
-                transaction={transaction}
-                transactionHistory={transactionHistory}
-                setTransactionHistory={setTransactionHistory}
-                transactionId={transaction.id}
-              />
-            )
-        )}
-      </Box>
+    <Flex direction="column" py="6" justify="center">
+      <Container width="150%">
+        <Heading py="3" align="center">
+          History
+        </Heading>
+        <Input
+          placeholder="Search"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+            FilterData(e.target.value);
+          }}
+        ></Input>
+        <Box maxH="310px" overflow="overlay" mt="2px">
+          {filteredTxn.map(
+            (transaction) =>
+              transaction && (
+                <TransactionCell
+                  key={transaction.id}
+                  transaction={transaction}
+                  transactionHistory={transactionHistory}
+                  setTransactionHistory={setTransactionHistory}
+                  transactionId={transaction.id}
+                />
+              )
+          )}
+        </Box>
+      </Container>
     </Flex>
   );
 }
