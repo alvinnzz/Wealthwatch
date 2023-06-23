@@ -96,9 +96,3 @@ export const ContextProvider = (props) => {
     </Context.Provider>
   );
 };
-
-// const obj = {
-//     watchlist,
-//     addStock,
-//     deleteStock
-// }
