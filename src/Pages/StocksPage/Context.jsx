@@ -51,13 +51,13 @@ export const ContextProvider = (props) => {
         const responseData = await response.json();
         console.log(responseData.stocks);
         alert("Added stock successfully!");
+        if (watchList.indexOf(stock) === -1 && watchList.length <= 3) {
+          setWatchList([...watchList, stock]);
+        }
       }
     } catch (err) {
       console.log(err);
       alert("Adding stock failed!");
-    }
-    if (watchList.indexOf(stock) === -1 && watchList.length <= 3) {
-      setWatchList([...watchList, stock]);
     }
   };
 
@@ -96,9 +96,3 @@ export const ContextProvider = (props) => {
     </Context.Provider>
   );
 };
-
-// const obj = {
-//     watchlist,
-//     addStock,
-//     deleteStock
-// }
