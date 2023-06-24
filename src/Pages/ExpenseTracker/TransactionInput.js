@@ -34,7 +34,7 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
   const submitHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:5001/api/transactions/", {
+      const response = await fetch("https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/transactions/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -14,7 +14,7 @@ function LoginPage({ setToken }) {
   const loginHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:5001/api/users/login", {
+      const response = await fetch("https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

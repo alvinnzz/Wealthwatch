@@ -77,7 +77,7 @@ function TransactionCell({
 
       const tid = transactionId;
       const response = await fetch(
-        "http://localhost:5001/api/transactions/" + tid,
+        "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/transactions/" + tid,
         {
           method: "DELETE",
           headers: {

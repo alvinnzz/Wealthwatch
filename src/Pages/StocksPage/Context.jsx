@@ -11,7 +11,7 @@ export const ContextProvider = (props) => {
       try {
         const uid = sessionStorage.getItem("userId");
         const response = await fetch(
-          "http://localhost:5001/api/users/getStock/" + uid,
+          "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/getStock/" + uid,
           {
             method: "GET",
             headers: {
@@ -37,7 +37,7 @@ export const ContextProvider = (props) => {
       } else {
         const uid = sessionStorage.getItem("userId");
         const response = await fetch(
-          "http://localhost:5001/api/users/addStock/" + uid,
+          "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/addStock/" + uid,
           {
             method: "POST",
             headers: {
@@ -65,7 +65,7 @@ export const ContextProvider = (props) => {
     try {
       const uid = sessionStorage.getItem("userId");
       const response = await fetch(
-        "http://localhost:5001/api/users/deleteStock/" + uid,
+        "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/deleteStock/" + uid,
         {
           method: "DELETE",
           headers: {

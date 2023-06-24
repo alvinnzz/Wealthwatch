@@ -13,7 +13,7 @@ function RegisterPage() {
   const signUpHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:5001/api/users/signup", {
+      const response = await fetch("https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
