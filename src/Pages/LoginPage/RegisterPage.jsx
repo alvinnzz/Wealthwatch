@@ -1,7 +1,7 @@
-import EmailInput from "./Input Components/EmailInput";
-import PasswordInput from "./Input Components/PasswordInput";
+import EmailInput from "./Input_Components/EmailInput";
+import PasswordInput from "./Input_Components/PasswordInput";
 import { Button, Container, Text, Link } from "@chakra-ui/react";
-import UsernameInput from "./Input Components/UsernameInput";
+import UsernameInput from "./Input_Components/UsernameInput";
 import { useState } from "react";
 
 function RegisterPage() {

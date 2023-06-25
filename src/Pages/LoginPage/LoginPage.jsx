@@ -1,5 +1,5 @@
-import EmailInput from "./Input Components/EmailInput";
-import PasswordInput from "./Input Components/PasswordInput";
+import EmailInput from "./Input_Components/EmailInput";
+import PasswordInput from "./Input_Components/PasswordInput";
 import { Button, Container, Text, Link, Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ function LoginPage({ setToken }) {
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const loginHandler = async (event) => {
     event.preventDefault();
