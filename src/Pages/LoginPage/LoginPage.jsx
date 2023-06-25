@@ -9,21 +9,24 @@ function LoginPage({ setToken }) {
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const loginHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
+      const response = await fetch(
+        "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        }
+      );
 
       const responseData = await response.json();
       alert("logged in successful");
