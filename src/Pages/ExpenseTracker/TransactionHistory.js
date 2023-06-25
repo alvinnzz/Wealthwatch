@@ -103,7 +103,12 @@ function TransactionCell({
   };
 
   return (
-    <Flex justify="space-between" bg="gray.50" py="2">
+    <Flex
+      justify="space-between"
+      bg="gray.50"
+      py="2"
+      data-testid="transaction-box"
+    >
       <Box
         p={1}
         borderLeftWidth={6}

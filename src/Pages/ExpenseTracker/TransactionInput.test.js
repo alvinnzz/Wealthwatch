@@ -1,7 +1,7 @@
 import TransactionInput from "./TransactionInput";
 import { render, screen, fireEvent } from "@testing-library/react";
 
-//Testing for Transaction page, checked whether input boxes for values worked.
+//Testing for Transaction page, checked whether input boxes for amount and description works, followed by drop down box for category.
 
 test("allows users to input Amount", () => {
   render(<TransactionInput />);
@@ -12,16 +12,16 @@ test("allows users to input Amount", () => {
 
 test("allows users to input Description", () => {
   render(<TransactionInput />);
-  const amountInput = screen.getByPlaceholderText("Description");
-  fireEvent.change(amountInput, { target: { value: "Bus to Tuas" } });
-  expect(amountInput.value).toBe("Bus to Tuas");
+  const descriptionInput = screen.getByPlaceholderText("Description");
+  fireEvent.change(descriptionInput, { target: { value: "Bus to Tuas" } });
+  expect(descriptionInput.value).toBe("Bus to Tuas");
 });
 
-test("allows users to select an option in the dropdown", () => {
+test("allows users to select category in the dropdown box", () => {
   render(<TransactionInput />);
-  const selectInput = screen.getByRole("option", { name: "Select option" });
+  const categoryInput = screen.getByRole("option", { name: "Select option" });
 
-  fireEvent.change(selectInput, { target: { value: "Transport" } });
+  fireEvent.change(categoryInput, { target: { value: "Transport" } });
 
-  expect(selectInput.value).toBe("Transport");
+  expect(categoryInput.value).toBe("Transport");
 });
