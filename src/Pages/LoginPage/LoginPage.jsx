@@ -58,6 +58,11 @@ function LoginPage({ setToken }) {
           setPassword={setPassword}
           invalidCredentials={invalidCredentials}
         />
+        {invalidCredentials && (
+          <Text color="red.800">
+            The email or password you entered is incorrect.
+          </Text>
+        )}
         <Button
           colorScheme="yellow"
           mt="25px"

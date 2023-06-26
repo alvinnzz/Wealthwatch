@@ -31,22 +31,17 @@ function PasswordInput({ setPassword, invalidCredentials }) {
             onChange={handlePasswordChange}
           />
         ) : (
-          <div>
-            <Input
-              className="form__input"
-              id="password"
-              placeholder="Password"
-              type={show ? "text" : "password"}
-              size="lg"
-              borderColor="red.600"
-              onChange={handlePasswordChange}
-              _hover={{ borderColor: "red.300" }}
-              _focus={{ borderColor: "red.300" }}
-            />
-            <Text color="red.800" mt="5px">
-              The email or password you entered is incorrect.
-            </Text>
-          </div>
+          <Input
+            className="form__input"
+            id="password"
+            placeholder="Password"
+            type={show ? "text" : "password"}
+            size="lg"
+            borderColor="red.600"
+            onChange={handlePasswordChange}
+            _hover={{ borderColor: "red.300" }}
+            _focus={{ borderColor: "red.300" }}
+          />
         )}
       </FormControl>
       <InputRightElement width="4.5rem">
