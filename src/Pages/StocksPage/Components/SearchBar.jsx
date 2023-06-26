@@ -6,7 +6,7 @@ import { Context } from "../Context";
 function SearchBar() {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
-  const { addStock } = useContext(Context);
+  const { addStock, watchList } = useContext(Context);
 
   useEffect(() => {
     let isMounted = true;
@@ -66,21 +66,31 @@ function SearchBar() {
   };
 
   return (
-    <Center position="relative" mt="1em" mb="5em">
-      <Input
-        bg="rgba(145, 158, 171, 0.04)"
-        id="search"
-        type="text"
-        placeholder="Search for a stock"
-        autoComplete="off"
-        _focus={{ outline: "none" }}
-        onChange={handleInputChange}
-        width="30%"
-        value={search}
-      />
+    <>
+      {watchList.length > 2 ? (
+        <Center>
+          <Text bg="gray.50" color="red.800" mt="1em" mb="5em">
+            Max number of stocks hit (3),remove a stock before proceeding
+          </Text>
+        </Center>
+      ) : (
+        <Center position="relative" mt="1em" mb="5em">
+          <Input
+            bg="rgba(145, 158, 171, 0.04)"
+            id="search"
+            type="text"
+            placeholder="Search for a stock"
+            autoComplete="off"
+            _focus={{ outline: "none" }}
+            onChange={handleInputChange}
+            width="30%"
+            value={search}
+          />
 
-      {renderDropdown()}
-    </Center>
+          {renderDropdown()}
+        </Center>
+      )}
+    </>
   );
 }
 
