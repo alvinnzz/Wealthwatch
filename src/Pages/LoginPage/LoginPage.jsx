@@ -1,6 +1,6 @@
 import EmailInput from "./Input_Components/EmailInput";
 import PasswordInput from "./Input_Components/PasswordInput";
-import { Button, Container, Text, Link, Box } from "@chakra-ui/react";
+import { Button, Container, Text, Link } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

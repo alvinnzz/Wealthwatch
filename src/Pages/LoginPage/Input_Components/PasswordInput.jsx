@@ -4,7 +4,6 @@ import {
   InputRightElement,
   Button,
   FormControl,
-  Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -20,7 +19,7 @@ function PasswordInput({ setPassword, invalidCredentials }) {
   return (
     <InputGroup size="lg" width="80%" borderColor="blackAlpha.600" mt="15px">
       <FormControl isRequired>
-        {invalidCredentials == false ? (
+        {invalidCredentials === false ? (
           <Input
             className="form__input"
             id="password"
