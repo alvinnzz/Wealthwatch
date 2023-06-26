@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function LoginPage({ setToken }) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const [error, setError] = useState(null);
+  const [invalidCredentials, setInvalidCredentials] = useState(false);
 
   const navigate = useNavigate();
 
@@ -29,7 +29,6 @@ function LoginPage({ setToken }) {
       );
 
       const responseData = await response.json();
-      alert("logged in successful");
       sessionStorage.setItem("token", responseData.token);
       sessionStorage.setItem("userId", responseData.userId);
       setToken(responseData.token);
@@ -38,7 +37,8 @@ function LoginPage({ setToken }) {
       }, 500);
     } catch (err) {
       console.log(err);
-      alert("login failed");
+      // alert("login failed");
+      setInvalidCredentials(true);
     }
   };
 
@@ -53,8 +53,11 @@ function LoginPage({ setToken }) {
         <Text fontSize={30} mt="20px">
           Sign In
         </Text>
-        <EmailInput setEmail={setEmail} setError={setError} />
-        <PasswordInput setPassword={setPassword} />
+        <EmailInput setEmail={setEmail} />
+        <PasswordInput
+          setPassword={setPassword}
+          invalidCredentials={invalidCredentials}
+        />
         <Button
           colorScheme="yellow"
           mt="25px"
@@ -71,7 +74,10 @@ function LoginPage({ setToken }) {
         <Link
           color="#ffa460"
           fontWeight="bold"
-          onClick={() => (window.location = "/register")}
+          onClick={() => {
+            setInvalidCredentials(false);
+            window.location = "/register";
+          }}
         >
           Sign Up
         </Link>
