@@ -60,7 +60,7 @@ function HomePage() {
             </Text>
             <Text fontSize="20px">
               to zoom in on certain portions of the day to better analyse your
-              buy and
+              buys and sells.
             </Text>
           </Box>
         </Box>

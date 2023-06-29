@@ -45,7 +45,8 @@ function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
       try {
         const uid = sessionStorage.getItem("userId");
         const response = await fetch(
-          "http://localhost:5001/api/transactions/user/" + uid,
+          "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/transactions/user/" +
+            uid,
           {
             method: "GET",
             headers: {

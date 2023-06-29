@@ -7,8 +7,8 @@ const cors = require("cors");
 const userRoute = require("./routes/user-route");
 const transactionRoute = require("./routes/transaction-route");
 const errorHandler = require("./middleware/errorHandler");
-
-const PORT = process.env.PORT || 5001;
+//process.env.PORT ||
+const PORT = 5001;
 const app = express();
 
 //app.use(express.urlencoded({ extended: true }));
@@ -44,3 +44,5 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+module.exports = app;

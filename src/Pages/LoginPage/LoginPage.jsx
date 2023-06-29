@@ -1,32 +1,34 @@
-import EmailInput from "./Input Components/EmailInput";
-import PasswordInput from "./Input Components/PasswordInput";
-import { Button, Container, Text, Link, Box } from "@chakra-ui/react";
+import EmailInput from "./Input_Components/EmailInput";
+import PasswordInput from "./Input_Components/PasswordInput";
+import { Button, Container, Text, Link } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage({ setToken }) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const [error, setError] = useState(null);
+  const [invalidCredentials, setInvalidCredentials] = useState(false);
 
   const navigate = useNavigate();
 
   const loginHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:5001/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
+      const response = await fetch(
+        "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        }
+      );
 
       const responseData = await response.json();
-      alert("logged in successful");
       sessionStorage.setItem("token", responseData.token);
       sessionStorage.setItem("userId", responseData.userId);
       setToken(responseData.token);
@@ -35,7 +37,8 @@ function LoginPage({ setToken }) {
       }, 500);
     } catch (err) {
       console.log(err);
-      alert("login failed");
+      // alert("login failed");
+      setInvalidCredentials(true);
     }
   };
 
@@ -50,8 +53,16 @@ function LoginPage({ setToken }) {
         <Text fontSize={30} mt="20px">
           Sign In
         </Text>
-        <EmailInput setEmail={setEmail} setError={setError} />
-        <PasswordInput setPassword={setPassword} />
+        <EmailInput setEmail={setEmail} />
+        <PasswordInput
+          setPassword={setPassword}
+          invalidCredentials={invalidCredentials}
+        />
+        {invalidCredentials && (
+          <Text color="red.800">
+            The email or password you entered is incorrect.
+          </Text>
+        )}
         <Button
           colorScheme="yellow"
           mt="25px"
@@ -68,7 +79,10 @@ function LoginPage({ setToken }) {
         <Link
           color="#ffa460"
           fontWeight="bold"
-          onClick={() => (window.location = "/register")}
+          onClick={() => {
+            setInvalidCredentials(false);
+            window.location = "/register";
+          }}
         >
           Sign Up
         </Link>
