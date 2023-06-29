@@ -9,31 +9,37 @@ function RegisterPage() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
+  const [invalidCredentials, setInvalidCredentials] = useState(false);
 
   const signUpHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: username,
-          email: email,
-          password: password,
-        }),
-      });
+      const response = await fetch(
+        "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            email: email,
+            password: password,
+          }),
+        }
+      );
 
       const responseData = await response.json();
       if (responseData === "signup failed: email taken") {
-        alert("Sign up failed: Email taken");
+        // alert("Sign up failed: Email taken");
+        setError("Sign up failed: Email taken");
+        setInvalidCredentials(true);
       } else {
         window.location = "/login";
       }
       console.log(responseData);
     } catch (err) {
-      alert(err);
+      setInvalidCredentials(true);
       console.log(err);
       // alert("Email taken. Please try another email.");
     }
@@ -43,6 +49,7 @@ function RegisterPage() {
     var result = /\S+@\S+\.\S+/.test(email);
     if (!result) {
       setError("Invalid email entered. Please enter a valid email.");
+      setInvalidCredentials(true);
     }
     return result;
   }
@@ -60,16 +67,18 @@ function RegisterPage() {
         </Text>
         <UsernameInput setUsername={setUsername} />
         <EmailInput setEmail={setEmail} />
-        <PasswordInput setPassword={setPassword} />
+        <PasswordInput
+          setPassword={setPassword}
+          invalidCredentials={invalidCredentials}
+        />
+        <Text color="red.800">{error}</Text>
         <Button
           colorScheme="yellow"
           mt="25px"
           mb="25px"
           width="75%"
           borderRadius="30px"
-          onClick={(event) =>
-            isValidEmail(email) ? signUpHandler(event) : alert(error)
-          }
+          onClick={(event) => isValidEmail(email) && signUpHandler(event)}
         >
           Create your account
         </Button>
