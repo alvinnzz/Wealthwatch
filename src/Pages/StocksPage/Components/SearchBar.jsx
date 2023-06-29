@@ -7,7 +7,6 @@ function SearchBar() {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const { addStock, watchList } = useContext(Context);
-  const { addStock, watchList } = useContext(Context);
 
   useEffect(() => {
     let isMounted = true;
