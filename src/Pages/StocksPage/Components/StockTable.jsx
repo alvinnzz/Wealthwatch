@@ -19,7 +19,7 @@ import { FiTrash2 } from "react-icons/fi";
 
 function StockTable() {
   const [stock, setStock] = useState([]);
-  const {deleteStock , watchList} = useContext(Context);
+  const { deleteStock, watchList } = useContext(Context);
   const navigate = useNavigate();
 
   useEffect(() => {

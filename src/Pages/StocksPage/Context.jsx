@@ -11,7 +11,8 @@ export const ContextProvider = (props) => {
       try {
         const uid = sessionStorage.getItem("userId");
         const response = await fetch(
-          "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/getStock/" + uid,
+          "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/getStock/" +
+            uid,
           {
             method: "GET",
             headers: {
@@ -32,12 +33,14 @@ export const ContextProvider = (props) => {
 
   const addStock = async (stock) => {
     try {
-      if (watchList.length > 3) {
-        alert("Maximum quota hit. Delete a stock before adding");
-      } else {
+      // if (watchList.length >= 3) {
+      //   alert("Maximum quota hit. Delete a stock before adding");
+      // } else
+      if (watchList.length < 3) {
         const uid = sessionStorage.getItem("userId");
         const response = await fetch(
-          "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/addStock/" + uid,
+          "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/addStock/" +
+            uid,
           {
             method: "POST",
             headers: {
@@ -50,14 +53,12 @@ export const ContextProvider = (props) => {
         );
         const responseData = await response.json();
         console.log(responseData.stocks);
-        alert("Added stock successfully!");
         if (watchList.indexOf(stock) === -1 && watchList.length <= 3) {
           setWatchList([...watchList, stock]);
         }
       }
     } catch (err) {
       console.log(err);
-      alert("Adding stock failed!");
     }
   };
 
@@ -65,7 +66,8 @@ export const ContextProvider = (props) => {
     try {
       const uid = sessionStorage.getItem("userId");
       const response = await fetch(
-        "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/deleteStock/" + uid,
+        "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/deleteStock/" +
+          uid,
         {
           method: "DELETE",
           headers: {
@@ -78,10 +80,8 @@ export const ContextProvider = (props) => {
       );
       const responseData = await response.json();
       console.log(responseData.stocks);
-      alert("Deleted stock successfully!");
     } catch (err) {
       console.log(err);
-      alert("Deleting stock failed!");
     }
     setWatchList(
       watchList.filter((element) => {

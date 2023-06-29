@@ -1,6 +1,6 @@
 import EmailInput from "./Input_Components/EmailInput";
 import PasswordInput from "./Input_Components/PasswordInput";
-import { Button, Container, Text, Link, Box } from "@chakra-ui/react";
+import { Button, Container, Text, Link } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -58,6 +58,11 @@ function LoginPage({ setToken }) {
           setPassword={setPassword}
           invalidCredentials={invalidCredentials}
         />
+        {invalidCredentials && (
+          <Text color="red.800">
+            The email or password you entered is incorrect.
+          </Text>
+        )}
         <Button
           colorScheme="yellow"
           mt="25px"
