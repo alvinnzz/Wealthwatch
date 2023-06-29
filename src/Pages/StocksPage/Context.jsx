@@ -13,6 +13,8 @@ export const ContextProvider = (props) => {
         const response = await fetch(
           "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/getStock/" +
             uid,
+          "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/getStock/" +
+            uid,
           {
             method: "GET",
             headers: {
@@ -53,6 +55,7 @@ export const ContextProvider = (props) => {
         );
         const responseData = await response.json();
         console.log(responseData.stocks);
+        alert("Added stock successfully!");
         if (watchList.indexOf(stock) === -1 && watchList.length <= 3) {
           setWatchList([...watchList, stock]);
         }
