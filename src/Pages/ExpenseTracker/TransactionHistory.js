@@ -91,7 +91,9 @@ function TransactionCell({
       );
 
       const responseData = await response.json();
-
+      if (responseData.error) {
+        throw new Error(responseData.error);
+      }
       alert("Deleted transaction successfully!");
 
       const updatedHistory = transactionHistory.filter(

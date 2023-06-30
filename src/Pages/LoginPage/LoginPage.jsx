@@ -29,12 +29,19 @@ function LoginPage({ setToken }) {
       );
 
       const responseData = await response.json();
-      sessionStorage.setItem("token", responseData.token);
-      sessionStorage.setItem("userId", responseData.userId);
-      setToken(responseData.token);
-      setTimeout(() => {
-        navigate("/");
-      }, 500);
+      if (responseData.error === "Login failed: Email not found!" || responseData.error === "Login failed: Wrong Password!") {
+        //alert("Login failed: Email not found!");
+        setInvalidCredentials(true);
+      } else if (responseData.hasOwnProperty('error')){
+        alert(responseData.error);
+      } else {
+        sessionStorage.setItem("token", responseData.token);
+        sessionStorage.setItem("userId", responseData.userId);
+        setToken(responseData.token);
+        setTimeout(() => {
+          navigate("/");
+        }, 500);
+      }
     } catch (err) {
       console.log(err);
       // alert("login failed");

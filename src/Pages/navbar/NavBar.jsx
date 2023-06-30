@@ -25,6 +25,9 @@ function NavBar({
       );
 
       const responseData = await response.json();
+      if (responseData.error){
+        throw new Error(responseData.error);
+      }
       setTransactionHistory(responseData.transactions);
       // console.log(transactionHistory);
       console.log(transactionHistory);
