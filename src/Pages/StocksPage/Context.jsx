@@ -13,8 +13,6 @@ export const ContextProvider = (props) => {
         const response = await fetch(
           "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/getStock/" +
             uid,
-          "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/getStock/" +
-            uid,
           {
             method: "GET",
             headers: {
@@ -23,6 +21,9 @@ export const ContextProvider = (props) => {
           }
         );
         const responseData = await response.json();
+        if (responseData.error){
+          throw new Error(responseData.error);
+        }
         console.log(responseData.stocks);
         setWatchList(responseData.stocks);
       } catch (err) {
@@ -54,6 +55,9 @@ export const ContextProvider = (props) => {
           }
         );
         const responseData = await response.json();
+        if (responseData.error){
+          throw new Error(responseData.error);
+        }
         console.log(responseData.stocks);
         alert("Added stock successfully!");
         if (watchList.indexOf(stock) === -1 && watchList.length <= 3) {
@@ -82,7 +86,11 @@ export const ContextProvider = (props) => {
         }
       );
       const responseData = await response.json();
+      if (responseData.error){
+        throw new Error(responseData.error);
+      }
       console.log(responseData.stocks);
+      alert("Stock deleted successfully!")
     } catch (err) {
       console.log(err);
     }

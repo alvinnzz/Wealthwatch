@@ -30,10 +30,12 @@ function RegisterPage() {
       );
 
       const responseData = await response.json();
-      if (responseData === "signup failed: email taken") {
+      if (responseData.error === "Sign up failed: Email taken") {
         // alert("Sign up failed: Email taken");
         setError("Sign up failed: Email taken");
         setInvalidCredentials(true);
+      } else if (responseData.hasOwnProperty('error')){
+        alert(responseData.error);
       } else {
         window.location = "/login";
       }

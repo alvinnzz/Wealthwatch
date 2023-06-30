@@ -53,6 +53,9 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
       );
 
       const responseData = await response.json();
+      if (responseData.error){
+        throw new Error(responseData.error);
+      }
       let temp = transactionHistory;
       temp.unshift(responseData.transaction);
       setTransactionHistory(temp);
