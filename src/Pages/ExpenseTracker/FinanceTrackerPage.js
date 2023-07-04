@@ -56,7 +56,7 @@ function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
         );
 
         const responseData = await response.json();
-        if (responseData.error){
+        if (responseData.error) {
           throw new Error(responseData.error);
         }
         setTransactionHistory(responseData.transactions);

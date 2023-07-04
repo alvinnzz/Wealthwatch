@@ -109,6 +109,13 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
             mt="5px"
             onChange={handleDescriptionChange}
           />
+          <Input
+            mt="5px"
+            size="md"
+            type="date"
+            defaultValue={new Date().toISOString().split("T")[0]}
+            onChange={handleDateChange}
+          />
           <InputGroup>
             <InputLeftElement
               pointerEvents="none"
@@ -116,13 +123,13 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
               fontSize="1.2em"
               children="$"
               mt="5px"
-              ml="5px"
             />
+
             {error ? (
-              <Box width="100%">
+              <Box>
                 <Input
                   {...register("amount")}
-                  placeholder="Amount"
+                  placeholder="   Amount"
                   mt="5px"
                   onChange={handleAmountChange}
                   borderColor="red.600"
@@ -130,8 +137,7 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
                   _focus={{ borderColor: "red.300" }}
                 />
                 <Text fontSize="13px" color="red.800">
-                  Invalid transaction entered. Ensure each field is filled in
-                  appropriately.
+                  Invalid transaction entered. Ensure each field is filled in.
                 </Text>
               </Box>
             ) : (
@@ -143,13 +149,6 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
               />
             )}
           </InputGroup>
-          <Input
-            mt="5px"
-            size="md"
-            type="date"
-            defaultValue={new Date().toISOString().split("T")[0]}
-            onChange={handleDateChange}
-          />
           <Button mt="20px" type="submit" width="100%" bg="#ffcc90">
             Add transaction
           </Button>

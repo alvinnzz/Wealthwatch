@@ -17,14 +17,47 @@ function TransactionHistory({ transactionHistory, setTransactionHistory }) {
   const [searchText, setSearchText] = useState("");
   const [filteredTxn, setFilteredTxn] = useState(transactionHistory);
 
+  function FilterWeek() {
+    let txn = [...transactionHistory];
+    const currentDate = new Date();
+    const oneWeekAgo = new Date(
+      currentDate.getTime() - 7 * 24 * 60 * 60 * 1000
+    ); // Subtract 7 days in milliseconds
+    txn = txn.filter(
+      (trans) =>
+        // Check if the transaction date is within the past week
+        new Date(trans.date) >= oneWeekAgo
+    );
+    setFilteredTxn(txn);
+  }
+
+  function FilterMonth() {
+    let txn = [...transactionHistory];
+    const currentDate = new Date();
+    const oneMonthAgo = new Date(
+      currentDate.getTime() - 30 * 7 * 24 * 60 * 60 * 1000
+    ); // Subtract 30 days in milliseconds
+    txn = txn.filter(
+      (trans) =>
+        // Check if the transaction date is within the past week
+        new Date(trans.date) >= oneMonthAgo
+    );
+    setFilteredTxn(txn);
+  }
+
+  function NoFilter() {
+    setFilteredTxn([...transactionHistory]);
+  }
+
   //to update cells when search bar is used
   function FilterData(searchText) {
+    let txnOriginal = [...transactionHistory];
     if (!searchText || !searchText.trim().length) {
       setFilteredTxn(transactionHistory);
       return;
     }
 
-    let txn = [...transactionHistory];
+    let txn = [...filteredTxn];
     txn = txn.filter((trans) =>
       trans.description.toLowerCase().includes(searchText.toLowerCase().trim())
     );
@@ -38,6 +71,15 @@ function TransactionHistory({ transactionHistory, setTransactionHistory }) {
         <Heading py="3" align="center">
           History
         </Heading>
+        <Button bg="#ffcc80" size="xs" mb="10px" mr="5px" onClick={FilterWeek}>
+          Week
+        </Button>
+        <Button bg="#ffcc80" size="xs" mb="10px" mr="5px" onClick={FilterMonth}>
+          Month
+        </Button>
+        <Button bg="#ffcc80" size="xs" mb="10px" onClick={NoFilter}>
+          All
+        </Button>
         <Input
           placeholder="Search"
           value={searchText}
