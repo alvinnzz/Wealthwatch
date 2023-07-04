@@ -7,9 +7,11 @@ import DoughnutGraph from "./DoughnutGraph";
 
 function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
   const [graphData, setGraphData] = useState([]);
+  const [filteredTxn, setFilteredTxn] = useState(transactionHistory);
+
   useEffect(() => {
     let data = [0, 0, 0, 0, 0, 0, 0];
-    transactionHistory.forEach((transaction) => {
+    filteredTxn.forEach((transaction) => {
       switch (transaction.category) {
         case "Food":
           data[0] += transaction.amount;
@@ -38,7 +40,7 @@ function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
       }
     });
     setGraphData(data);
-  }, [transactionHistory]);
+  }, [filteredTxn]);
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -77,10 +79,18 @@ function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
         columns={4}
         spacing={50}
         overflowX="scrollable"
+        minHeight="830px"
       >
         <GridItem colSpan="1"></GridItem>
 
-        <GridItem m="20px" centerContent mt="50px" minW="600px" ml="-300px">
+        <GridItem
+          m="20px"
+          centerContent
+          mt="50px"
+          minW="600px"
+          ml="-300px"
+          overflowX="hidden"
+        >
           <Container centerContent>
             <DoughnutGraph graphData={graphData}></DoughnutGraph>
 
@@ -109,6 +119,8 @@ function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
           <TransactionHistory
             transactionHistory={transactionHistory}
             setTransactionHistory={setTransactionHistory}
+            filteredTxn={filteredTxn}
+            setFilteredTxn={setFilteredTxn}
           />
         </GridItem>
 

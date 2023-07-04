@@ -13,9 +13,13 @@ import { useState, useEffect } from "react";
 import { LuLoader2 } from "react-icons/lu";
 import ColorSetter from "./ColorSetter";
 
-function TransactionHistory({ transactionHistory, setTransactionHistory }) {
+function TransactionHistory({
+  transactionHistory,
+  setTransactionHistory,
+  filteredTxn,
+  setFilteredTxn,
+}) {
   const [searchText, setSearchText] = useState("");
-  const [filteredTxn, setFilteredTxn] = useState(transactionHistory);
 
   function FilterWeek() {
     let txn = [...transactionHistory];
