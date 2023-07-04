@@ -19,6 +19,7 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
+  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [error, setError] = useState(false);
 
   const handleCategoryChange = (event) => {
@@ -32,6 +33,12 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
   const handleAmountChange = (event) => {
     const value = event.target.value;
     setAmount(value);
+  };
+
+  const handleDateChange = (event) => {
+    const value = event.target.value;
+    console.log(value);
+    setDate(value);
   };
 
   const submitHandler = async (event) => {
@@ -48,6 +55,7 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
             description: description,
             category: category,
             amount: amount,
+            date: date,
             creator: sessionStorage.getItem("userId"),
           }),
         }
@@ -65,6 +73,7 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
       resetField("category");
       resetField("description");
       resetField("amount");
+      resetField("date");
       setError(false);
       window.location.reload();
     } catch (err) {
@@ -134,6 +143,13 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
               />
             )}
           </InputGroup>
+          <Input
+            mt="5px"
+            size="md"
+            type="date"
+            defaultValue={new Date().toISOString().split("T")[0]}
+            onChange={handleDateChange}
+          />
           <Button mt="20px" type="submit" width="100%" bg="#ffcc90">
             Add transaction
           </Button>
