@@ -8,6 +8,7 @@ import {
   Container,
   Button,
   Text,
+  Center,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import React, { useState } from "react";
@@ -53,7 +54,7 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
       );
 
       const responseData = await response.json();
-      if (responseData.error){
+      if (responseData.error) {
         throw new Error(responseData.error);
       }
       let temp = transactionHistory;
@@ -75,7 +76,9 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
 
   return (
     <Box ml="15%">
-      <Heading ml="50%">Transaction</Heading>
+      <Center fontSize="25px" fontWeight="bold" width="150%">
+        Transaction
+      </Center>
       <form id="form" align="center" onSubmit={submitHandler}>
         <Container width="150%">
           <Select
