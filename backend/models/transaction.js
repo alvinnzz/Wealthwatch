@@ -14,6 +14,10 @@ const transactionSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    date: {
+        type: Date,
+        required: true,
+    },
     creator: {
         type: mongoose.Types.ObjectId,
         required: true,

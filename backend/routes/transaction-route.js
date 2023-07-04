@@ -69,12 +69,13 @@ router.post("/", async (req, res, next) => {
     const error = new Error("Invalid inputs");
     return next(error);
   }
-  const { description, category, amount, creator } = req.body;
+  const { description, category, amount, date, creator } = req.body;
 
   const createdTransaction = new Transaction({
     description,
     category,
     amount,
+    date,
     creator,
   });
 
