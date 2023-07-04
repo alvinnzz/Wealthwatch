@@ -3,6 +3,7 @@ import PasswordInput from "./Input_Components/PasswordInput";
 import { Button, Container, Text, Link } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 function LoginPage({ setToken }) {
   const [email, setEmail] = useState(null);
@@ -38,6 +39,7 @@ function LoginPage({ setToken }) {
         sessionStorage.setItem("token", responseData.token);
         sessionStorage.setItem("userId", responseData.userId);
         setToken(responseData.token);
+        toast.success("Login successfully!");
         setTimeout(() => {
           navigate("/");
         }, 500);

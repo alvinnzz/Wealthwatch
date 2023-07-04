@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import StocksOverview from "./Pages/StocksPage/StocksOverview";
 import StocksDetailedPage from "./Pages/StocksPage/StocksDetailedPage";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App(props) {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
@@ -44,6 +46,18 @@ function App(props) {
         </Routes>
       </Router>
       {/* <DonutGraph /> */}
+      <ToastContainer 
+        theme="colored"
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </ChakraProvider>
   );
 }
