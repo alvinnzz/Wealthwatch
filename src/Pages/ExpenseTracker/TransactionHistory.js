@@ -75,13 +75,36 @@ function TransactionHistory({
         <Heading py="3" align="center">
           History
         </Heading>
-        <Button bg="#ffcc80" size="xs" mb="10px" mr="5px" onClick={FilterWeek}>
+        <Button
+          bg="#ffcc80"
+          size="xs"
+          mb="10px"
+          mr="5px"
+          _hover={{ bg: "#ffd8a8" }}
+          _active={{ bg: "#ffa94d" }}
+          onClick={FilterWeek}
+        >
           Week
         </Button>
-        <Button bg="#ffcc80" size="xs" mb="10px" mr="5px" onClick={FilterMonth}>
+        <Button
+          bg="#ffcc80"
+          size="xs"
+          mb="10px"
+          mr="5px"
+          _hover={{ bg: "#ffd8a8" }}
+          _active={{ bg: "#ffa94d" }}
+          onClick={FilterMonth}
+        >
           Month
         </Button>
-        <Button bg="#ffcc80" size="xs" mb="10px" onClick={NoFilter}>
+        <Button
+          bg="#ffcc80"
+          size="xs"
+          mb="10px"
+          _hover={{ bg: "#ffd8a8" }}
+          _active={{ bg: "#ffa94d" }}
+          onClick={NoFilter}
+        >
           All
         </Button>
         <Input
