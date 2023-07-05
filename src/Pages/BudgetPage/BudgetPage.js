@@ -10,7 +10,6 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { CProgress, CProgressBar } from "@coreui/react";
 import ProgressBar from "./ProgressBar";
 
 const BudgetPage = ({ setBudget, budget, transactionHistory }) => {
