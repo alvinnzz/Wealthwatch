@@ -15,7 +15,8 @@ function NavBar({
     try {
       const uid = sessionStorage.getItem("userId");
       const response = await fetch(
-        "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/transactions/user/" + uid,
+        "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/transactions/user/" +
+          uid,
         {
           method: "GET",
           headers: {
@@ -25,7 +26,7 @@ function NavBar({
       );
 
       const responseData = await response.json();
-      if (responseData.error){
+      if (responseData.error) {
         throw new Error(responseData.error);
       }
       setTransactionHistory(responseData.transactions);
@@ -64,6 +65,17 @@ function NavBar({
                 </Button>
                 <ul className="dropdown">
                   <li>
+                    <Button
+                      colorScheme="#ffcc80"
+                      variant="link"
+                      color="black"
+                      onClick={() => {
+                        navigate("/budget");
+                        fetchTransactions();
+                      }}
+                    >
+                      Budget
+                    </Button>
                     <Button
                       colorScheme="#ffcc80"
                       variant="link"
