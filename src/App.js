@@ -8,12 +8,14 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import StocksOverview from "./Pages/StocksPage/StocksOverview";
 import StocksDetailedPage from "./Pages/StocksPage/StocksDetailedPage";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import BudgetPage from "./Pages/BudgetPage/BudgetPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App(props) {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
   const [transactionHistory, setTransactionHistory] = useState([]);
+  const [budget, setBudget] = useState(0);
 
   return (
     <ChakraProvider>
@@ -34,6 +36,7 @@ function App(props) {
               <FinanceTrackerPage
                 transactionHistory={transactionHistory}
                 setTransactionHistory={setTransactionHistory}
+                budget={budget}
               />
             }
           />
@@ -42,11 +45,21 @@ function App(props) {
             path="/stockdetails/:symbol"
             element={<StocksDetailedPage />}
           />
+          <Route
+            path="/budget"
+            element={
+              <BudgetPage
+                budget={budget}
+                setBudget={setBudget}
+                transactionHistory={transactionHistory}
+              />
+            }
+          />
           {/* <Route path="/financialtracker" element={<FinanceTrackerPage />} /> */}
         </Routes>
       </Router>
       {/* <DonutGraph /> */}
-      <ToastContainer 
+      <ToastContainer
         theme="colored"
         position="top-center"
         autoClose={3000}
