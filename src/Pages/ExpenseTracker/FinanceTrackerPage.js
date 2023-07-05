@@ -4,8 +4,13 @@ import TransactionInput from "./TransactionInput";
 import TransactionHistory from "./TransactionHistory";
 import { useEffect, useState } from "react";
 import DoughnutGraph from "./DoughnutGraph";
+import ProgressBar from "../BudgetPage/ProgressBar";
 
-function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
+function FinanceTrackerPage({
+  transactionHistory,
+  setTransactionHistory,
+  budget,
+}) {
   const [graphData, setGraphData] = useState([]);
   const [filteredTxn, setFilteredTxn] = useState(transactionHistory);
 
@@ -94,20 +99,20 @@ function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
           <Container centerContent>
             <DoughnutGraph graphData={graphData}></DoughnutGraph>
 
-            <Text fontSize="4xl" position="absolute" bottom="56%">
+            <Text fontSize="4xl" position="absolute" bottom="65%">
               Total
             </Text>
             <Text
               fontSize="5xl"
               position="absolute"
-              bottom="50%"
+              bottom="60%"
               color="green.300"
               fontWeight="bold"
             >
               ${graphData[6]}
             </Text>
           </Container>
-          <Box ml="12%" w="75%">
+          <Box ml="12%" w="80%">
             <Labels graphData={graphData}></Labels>
           </Box>
         </GridItem>
@@ -126,6 +131,10 @@ function FinanceTrackerPage({ transactionHistory, setTransactionHistory }) {
 
         <GridItem colSpan="1"></GridItem>
       </SimpleGrid>
+      <ProgressBar
+        budget={budget}
+        transactionHistory={transactionHistory}
+      ></ProgressBar>
     </>
   );
 }
