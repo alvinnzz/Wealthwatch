@@ -24,7 +24,11 @@ const userSchema = new mongoose.Schema({
     stocks: [{
         type: String,
         required: true
-    }]
+    }],
+    monthlyBudget: {
+        type: Number,
+        default: 0
+    }
 });
 
 userSchema.plugin(uniqueValidator);

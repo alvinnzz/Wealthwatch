@@ -227,5 +227,63 @@ router.delete("/deleteStock/:uid", async (req, res, next) => {
   res.status(201).json({ stocks: userWithStocks.stocks })
 });
 
+// GET request to get monthly budget
+router.get('/:uid/getBudget', async (req, res, next) => {
+  const userId = req.params.uid;
+
+  let user;
+  try {
+    user = await User.findById(userId);   
+  } catch (err) {
+    console.log(err);
+    const error = new Error("Getting budget failed, please try again!");
+    return next(error);
+  }
+  if (!user) {
+    console.log("User does not exist, please try again!");
+    const error = new Error("User does not exist, please try again!");
+    return next(error);
+  }
+  console.log("Get budget successfully!");
+  res.status(201).json({ monthlyBudget: user.monthlyBudget });
+});
+
+// PUT request to edit user budget
+router.put('/:uid/editBudget', async (req, res, next) => {
+  const userId = req.params.uid;
+  const monthlyBudget = req.body.monthlyBudget;
+
+  if (monthlyBudget < 0) {
+    console.log("Monthly Budget should not be lesser than 0!");
+    const error = new Error("Please enter a budget greater than 0");
+    return next(error);
+  }
+
+  let user;
+  try {
+    // Find the user by userId
+    user = await User.findById(userId);
+  } catch (err) {
+    console.log(err);
+    const error = new Error("Editting budget failed, please try again!");
+    return next(error);
+  }
+  if (!user) {
+    console.log("User does not exist, please try again!");
+    const error = new Error("User does not exist, please try again!");
+    return next(error);
+  }
+  try{
+    user.monthlyBudget = monthlyBudget;
+    await user.save();
+  } catch (err) {
+    console.log(err);
+    const error = new Error("Editting budget failed, please try again!");
+    return next(error);
+  }
+  console.log("Budget updated successfully!");
+  res.status(201).json({ monthlyBudget: user.monthlyBudget });
+});
+
 
 module.exports = router;
