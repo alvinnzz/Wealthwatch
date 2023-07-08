@@ -19,7 +19,7 @@ function ProgressBar({ transactionHistory, budget }) {
     return sum + transaction.amount;
   }, 0);
   console.log(totalAmt);
-  return budget == 0 ? null : totalAmt <= budget ? (
+  return budget === 0 ? null : totalAmt <= budget ? (
     <Stack direction="column" align="center">
       <Box border="1px solid black" width="50%">
         <Center>

@@ -25,6 +25,8 @@ function App(props) {
           setToken={setToken}
           setTransactionHistory={setTransactionHistory}
           transactionHistory={transactionHistory}
+          budget={budget}
+          setBudget={setBudget}
         />
         <Routes>
           <Route path="/" element={<HomePage />} />

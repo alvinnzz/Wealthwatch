@@ -8,6 +8,8 @@ function NavBar({
   setToken,
   setTransactionHistory,
   transactionHistory,
+  budget,
+  setBudget
 }) {
   const navigate = useNavigate();
 
@@ -38,6 +40,33 @@ function NavBar({
       alert("Receiving transaction failed!");
     }
   };
+
+  const fetchBudget = async () => {
+    try {
+      const uid = sessionStorage.getItem("userId");
+      const response = await fetch(
+        "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/" +
+          uid + "/getBudget",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const responseData = await response.json();
+      if (responseData.error) {
+        throw new Error(responseData.error);
+      }
+      setBudget(responseData.monthlyBudget);
+      console.log(responseData.monthlyBudget);
+    } catch (err) {
+      console.log(err);
+      alert("Receiving budget failed!");
+    }
+  };
+
   return (
     <>
       <nav className="navbar">
@@ -72,6 +101,7 @@ function NavBar({
                       onClick={() => {
                         navigate("/budget");
                         fetchTransactions();
+                        fetchBudget();
                       }}
                     >
                       Budget
@@ -83,6 +113,7 @@ function NavBar({
                       onClick={() => {
                         navigate("/financialtracker");
                         fetchTransactions();
+                        fetchBudget();
                       }}
                     >
                       Transaction Page
