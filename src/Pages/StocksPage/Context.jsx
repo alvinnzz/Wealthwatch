@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { toast } from 'react-toastify';
 
 export const Context = createContext();
 
@@ -59,13 +60,14 @@ export const ContextProvider = (props) => {
           throw new Error(responseData.error);
         }
         console.log(responseData.stocks);
-        alert("Added stock successfully!");
+        toast.success("Added stock successfully!");
         if (watchList.indexOf(stock) === -1 && watchList.length <= 3) {
           setWatchList([...watchList, stock]);
         }
       }
     } catch (err) {
       console.log(err);
+      toast.error("Adding stock failed!");
     }
   };
 
@@ -90,9 +92,10 @@ export const ContextProvider = (props) => {
         throw new Error(responseData.error);
       }
       console.log(responseData.stocks);
-      alert("Stock deleted successfully!")
+      toast.success("Stock deleted successfully!");
     } catch (err) {
       console.log(err);
+      toast.error("Deleting stock failed!");
     }
     setWatchList(
       watchList.filter((element) => {

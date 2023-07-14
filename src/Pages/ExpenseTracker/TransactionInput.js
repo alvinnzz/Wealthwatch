@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import React, { useState } from "react";
+import { toast } from 'react-toastify';
 
 function TransactionInput({ transactionHistory, setTransactionHistory }) {
   const { register, resetField } = useForm();
@@ -74,12 +75,18 @@ function TransactionInput({ transactionHistory, setTransactionHistory }) {
       resetField("description");
       resetField("amount");
       resetField("date");
-      setError(false);
-      window.location.reload();
+      setError(false);   
+      toast.success("Added transaction successfully!");
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+
     } catch (err) {
       console.log(err);
       // alert("Adding transaction failed!");
       setError(true);
+      toast.error("Adding transaction failed!");
     }
   };
 

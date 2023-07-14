@@ -2,6 +2,7 @@ import Logo from "../../Resources/logoSample.png";
 import "./navbarStyle.css";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@chakra-ui/react";
+import { toast } from 'react-toastify';
 
 function NavBar({
   token,
@@ -32,7 +33,6 @@ function NavBar({
         throw new Error(responseData.error);
       }
       setTransactionHistory(responseData.transactions);
-      // console.log(transactionHistory);
       console.log(transactionHistory);
       console.log(responseData.transactions);
     } catch (err) {
@@ -143,6 +143,7 @@ function NavBar({
                     sessionStorage.removeItem("userId");
                     setToken();
                     navigate("/");
+                    toast.success("Logout successfully!");
                   }}
                 >
                   Logout

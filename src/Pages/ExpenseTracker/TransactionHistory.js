@@ -12,6 +12,7 @@ import { FiTrash2 } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { LuLoader2 } from "react-icons/lu";
 import ColorSetter from "./ColorSetter";
+import { toast } from 'react-toastify';
 
 function TransactionHistory({
   transactionHistory,
@@ -163,7 +164,7 @@ function TransactionCell({
       if (responseData.error) {
         throw new Error(responseData.error);
       }
-      alert("Deleted transaction successfully!");
+      toast.success("Deleted transaction successfully!");
 
       const updatedHistory = transactionHistory.filter(
         (item) => item.id !== transaction.id
@@ -171,7 +172,7 @@ function TransactionCell({
       setTransactionHistory(updatedHistory);
     } catch (err) {
       console.log(err);
-      alert("Deleting transaction failed!");
+      toast.error("Deleting transaction failed!");
     } finally {
       setDeleting(false);
     }

@@ -11,6 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import ProgressBar from "./ProgressBar";
+import { toast } from 'react-toastify';
 
 const BudgetPage = ({ setBudget, budget, transactionHistory }) => {
   //   const handleBudgetChange = (event, category) => {
@@ -50,11 +51,12 @@ const BudgetPage = ({ setBudget, budget, transactionHistory }) => {
         throw new Error(responseData.error);
       }
       console.log("Editted budget successfully!");
+      toast.success("Editted budget successfully!");
       // Reset the budgetInput field after successful submission
       event.target.elements.budgetInput.value = '';
     } catch (err) {
       console.log(err);
-      alert("Editting budget failed!");
+      toast.error(err.message);
     }
   };
 

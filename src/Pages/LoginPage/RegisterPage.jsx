@@ -3,6 +3,7 @@ import PasswordInput from "./Input_Components/PasswordInput";
 import { Button, Container, Text, Link } from "@chakra-ui/react";
 import UsernameInput from "./Input_Components/UsernameInput";
 import { useState } from "react";
+import { toast } from 'react-toastify';
 
 function RegisterPage() {
   const [username, setUsername] = useState(null);
@@ -31,13 +32,16 @@ function RegisterPage() {
 
       const responseData = await response.json();
       if (responseData.error === "Sign up failed: Email taken") {
-        // alert("Sign up failed: Email taken");
         setError("Sign up failed: Email taken");
         setInvalidCredentials(true);
+        toast.error("Sign up failed: Email taken");
       } else if (responseData.hasOwnProperty('error')){
         alert(responseData.error);
       } else {
-        window.location = "/login";
+        toast.success("Signed up successfully!");
+        setTimeout(() => {
+          window.location = "/login";
+        }, 2000);
       }
       console.log(responseData);
     } catch (err) {
