@@ -2,7 +2,7 @@ import Logo from "../../Resources/logoSample.png";
 import "./navbarStyle.css";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@chakra-ui/react";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function NavBar({
   token,
@@ -10,7 +10,7 @@ function NavBar({
   setTransactionHistory,
   transactionHistory,
   budget,
-  setBudget
+  setBudget,
 }) {
   const navigate = useNavigate();
 
@@ -33,10 +33,10 @@ function NavBar({
         throw new Error(responseData.error);
       }
       setTransactionHistory(responseData.transactions);
-      console.log(transactionHistory);
-      console.log(responseData.transactions);
+      // console.log(transactionHistory);
+      // console.log(responseData.transactions);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       alert("Receiving transaction failed!");
     }
   };
@@ -46,7 +46,8 @@ function NavBar({
       const uid = sessionStorage.getItem("userId");
       const response = await fetch(
         "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/" +
-          uid + "/getBudget",
+          uid +
+          "/getBudget",
         {
           method: "GET",
           headers: {
@@ -60,7 +61,7 @@ function NavBar({
         throw new Error(responseData.error);
       }
       setBudget(responseData.monthlyBudget);
-      console.log(responseData.monthlyBudget);
+      // console.log(responseData.monthlyBudget);
     } catch (err) {
       console.log(err);
       alert("Receiving budget failed!");
@@ -113,7 +114,7 @@ function NavBar({
                       onClick={() => {
                         navigate("/financialtracker");
                         fetchTransactions();
-                        fetchBudget();
+                        // fetchBudget();
                       }}
                     >
                       Transaction Page
