@@ -10,9 +10,40 @@ function FinanceTrackerPage({
   transactionHistory,
   setTransactionHistory,
   budget,
+  setBudget,
 }) {
   const [graphData, setGraphData] = useState([]);
   const [filteredTxn, setFilteredTxn] = useState(transactionHistory);
+
+  useEffect(() => {
+    const fetchBudget = async () => {
+      try {
+        const uid = sessionStorage.getItem("userId");
+        const response = await fetch(
+          "https://wealthwatchbackend-c341579f13b3.herokuapp.com/api/users/" +
+            uid +
+            "/getBudget",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const responseData = await response.json();
+        if (responseData.error) {
+          throw new Error(responseData.error);
+        }
+        setBudget(responseData.monthlyBudget);
+        // console.log(responseData.monthlyBudget);
+      } catch (err) {
+        console.log(err);
+        alert("Receiving budget failed!");
+      }
+    };
+    fetchBudget();
+  }, []);
 
   useEffect(() => {
     let data = [0, 0, 0, 0, 0, 0, 0];
