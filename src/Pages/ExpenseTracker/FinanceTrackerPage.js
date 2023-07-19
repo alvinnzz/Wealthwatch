@@ -129,19 +129,37 @@ function FinanceTrackerPage({
         >
           <Container centerContent>
             <DoughnutGraph graphData={graphData}></DoughnutGraph>
-
-            <Text fontSize="4xl" position="absolute" bottom="65%">
-              Total
-            </Text>
-            <Text
-              fontSize="5xl"
-              position="absolute"
-              bottom="60%"
-              color="green.300"
-              fontWeight="bold"
-            >
-              ${graphData[6]}
-            </Text>
+            {budget != 0 ? (
+              <>
+                <Text fontSize="4xl" position="absolute" bottom="65%">
+                  Total
+                </Text>
+                <Text
+                  fontSize="5xl"
+                  position="absolute"
+                  bottom="60%"
+                  color="green.300"
+                  fontWeight="bold"
+                >
+                  ${graphData[6]}
+                </Text>
+              </>
+            ) : (
+              <>
+                <Text fontSize="4xl" position="absolute" bottom="58%">
+                  Total
+                </Text>
+                <Text
+                  fontSize="5xl"
+                  position="absolute"
+                  bottom="53%"
+                  color="green.300"
+                  fontWeight="bold"
+                >
+                  ${graphData[6]}
+                </Text>
+              </>
+            )}
           </Container>
           <Box ml="12%" w="80%">
             <Labels graphData={graphData}></Labels>
