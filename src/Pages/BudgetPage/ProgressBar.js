@@ -30,7 +30,8 @@ function ProgressBar({ transactionHistory, budget }) {
         </Center>
         <Center>
           <Text>
-            {(totalAmt / budget) * 100}% of budget used up for the month
+            {((totalAmt / budget) * 100).toFixed(1)}% of budget used up for the
+            month
           </Text>
         </Center>
         <Progress
@@ -56,7 +57,7 @@ function ProgressBar({ transactionHistory, budget }) {
         <Center>
           <Text>
             You have exceeded your budget this month by{" "}
-            {((totalAmt - budget) / budget) * 100}%
+            {(((totalAmt - budget) / budget) * 100).toFixed(1)}%
           </Text>
         </Center>
         <Progress
