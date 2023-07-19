@@ -39,6 +39,7 @@ function App(props) {
                 transactionHistory={transactionHistory}
                 setTransactionHistory={setTransactionHistory}
                 budget={budget}
+                setBudget={setBudget}
               />
             }
           />
