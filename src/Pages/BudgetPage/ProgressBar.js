@@ -23,10 +23,12 @@ function ProgressBar({ transactionHistory, budget }) {
     <Stack direction="column" align="center">
       <Box border="1px solid black" width="50%">
         <Center>
-          <Text>Budget: ${budget}</Text>
+          <Text data-testid="budget">Budget: ${budget}</Text>
         </Center>
         <Center>
-          <Text>Amount spent this month: ${totalAmt}</Text>
+          <Text data-testid="budgetleft">
+            Amount spent this month: ${totalAmt}
+          </Text>
         </Center>
         <Center>
           <Text>
@@ -52,7 +54,9 @@ function ProgressBar({ transactionHistory, budget }) {
           <Text mt="2%">Budget: ${budget}</Text>
         </Center>
         <Center>
-          <Text>Amount spent this month: ${totalAmt}</Text>
+          <Text data-testid="budgetexceeded">
+            Amount spent this month: ${totalAmt}
+          </Text>
         </Center>
         <Center>
           <Text>
