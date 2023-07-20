@@ -121,7 +121,6 @@ function FinanceTrackerPage({
 
         <GridItem
           m="20px"
-          centerContent
           mt="50px"
           minW="600px"
           ml="-300px"
