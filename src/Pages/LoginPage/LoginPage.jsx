@@ -3,7 +3,7 @@ import PasswordInput from "./Input_Components/PasswordInput";
 import { Button, Container, Text, Link } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function LoginPage({ setToken }) {
   const [email, setEmail] = useState(null);
@@ -30,10 +30,13 @@ function LoginPage({ setToken }) {
       );
 
       const responseData = await response.json();
-      if (responseData.error === "Login failed: Email not found!" || responseData.error === "Login failed: Wrong Password!") {
+      if (
+        responseData.error === "Login failed: Email not found!" ||
+        responseData.error === "Login failed: Wrong Password!"
+      ) {
         //alert("Login failed: Email not found!");
         setInvalidCredentials(true);
-      } else if (responseData.hasOwnProperty('error')){
+      } else if (responseData.hasOwnProperty("error")) {
         alert(responseData.error);
       } else {
         sessionStorage.setItem("token", responseData.token);
@@ -68,7 +71,7 @@ function LoginPage({ setToken }) {
           invalidCredentials={invalidCredentials}
         />
         {invalidCredentials && (
-          <Text color="red.800">
+          <Text color="red.800" data-testid="incorrectlogincredentials">
             The email or password you entered is incorrect.
           </Text>
         )}
