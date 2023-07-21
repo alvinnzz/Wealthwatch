@@ -1,8 +1,9 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import LoginPage from "./LoginPage";
+import "@testing-library/jest-dom";
 
 test("allows users to input a Email", () => {
-  render(<LoginPage />);
+  render(<LoginPage setToken={jest.fn()} />);
   const emailInput = screen.getByPlaceholderText("Email");
   fireEvent.change(emailInput, { target: { value: "john@live.com" } });
   expect(emailInput.value).toBe("john@live.com");
