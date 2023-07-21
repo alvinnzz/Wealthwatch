@@ -58,10 +58,8 @@ function App(props) {
               />
             }
           />
-          {/* <Route path="/financialtracker" element={<FinanceTrackerPage />} /> */}
         </Routes>
       </Router>
-      {/* <DonutGraph /> */}
       <ToastContainer
         theme="colored"
         position="top-center"
