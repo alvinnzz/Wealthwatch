@@ -3,7 +3,7 @@ import PasswordInput from "./Input_Components/PasswordInput";
 import { Button, Container, Text, Link } from "@chakra-ui/react";
 import UsernameInput from "./Input_Components/UsernameInput";
 import { useState } from "react";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function RegisterPage() {
   const [username, setUsername] = useState(null);
@@ -35,7 +35,7 @@ function RegisterPage() {
         setError("Sign up failed: Email taken");
         setInvalidCredentials(true);
         toast.error("Sign up failed: Email taken");
-      } else if (responseData.hasOwnProperty('error')){
+      } else if (responseData.hasOwnProperty("error")) {
         alert(responseData.error);
       } else {
         toast.success("Signed up successfully!");
@@ -77,7 +77,9 @@ function RegisterPage() {
           setPassword={setPassword}
           invalidCredentials={invalidCredentials}
         />
-        <Text color="red.800">{error}</Text>
+        <Text color="red.800" data-testid="emailtaken">
+          {error}
+        </Text>
         <Button
           colorScheme="yellow"
           mt="25px"
