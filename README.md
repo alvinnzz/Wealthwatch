@@ -54,12 +54,13 @@ Use our app here: https://wealthwatch-client.vercel.app/
 ### ER Diagram
 We have identified 2 tables in our database, users and transactions. Users are related to transactions as the creator and transaction is **created by** a user; each transaction 
 created belongs to **only one** user while each user is able to **create** **zero, one or many** transaction objects.
-
+![image](./src/Resources/1.png)
 
 This ER diagram helps to represent the relationships between different entities and it provides a simpler view of complex entities.
 
 
 ### Activity Diagram
+![image](./src/Resources/2.png)
 
 For our log in procedure, we designed a UML diagram to run through the sequence of events. Initially, the user is directed to a home page with a summary of the different functions our website provides. If the user is logged in, he or she will have access to the various services through the Navigation bar. Otherwise, the user’s navigation bar will prompt the user to log in, along with a button to route the user to the home page. By clicking on the log in, the user is redirected to the login page. 
 
@@ -70,42 +71,67 @@ If the user has an account, the user can log in, in which the back end will chec
 ### Reduce coupling
 In our code,  we try to decrease the degree of dependence between components, classes, and methods by having different pages and keeping the components used in each page within their respective folders.
 
+![image](./src/Resources/3.png)
+![image](./src/Resources/4.png)
+![image](./src/Resources/5.png)
+
 Following the principles of Object Oriented programming, we utilized different pages to split the respective components to reduce interactions between different pages.
 
 ### Make the Happy Path Prominent
+![image](./src/Resources/6.png)
+![image](./src/Resources/7.png)
 
 Above are part of our code for the user signup and login routes from the backend, making the happy path prominent helps us to picture the ideal or expected flow of execution, where everything goes as planned without any errors or exceptions.It also simplifies the design and implementation of the software making it easier to understand, maintain and debug the system.
 
 ### Version Control with Git: Branches and Pull requests
+![image](./src/Resources/8.png)
+![image](./src/Resources/9.png)
 
 We made use of different branches for the implementation of different features or the fixing of each bug. It enables us to develop simultaneously without affecting the main codebase and we are also able to work on separate branches at the same time. The use of pull requests also enhances our collaboration and communication with each other as we review each other's code, ensuring that no issues arise before merging the code with the main branch.
 
 ### Github Issues
+![image](./src/Resources/10.png)
+
 For our project, we made use of Github Issues to plan out the various functions we wanted to implement in our project. We mainly utilized the labels low, medium and high priority to distinguish which features were more urgent by which milestone. 
+
+![image](./src/Resources/11.png)
 
 Furthermore, we further broke down our issues into tasks to be completed. By doing so, we were able to stay informed of what was left to be done and hence plan our time well to complete our tasks by the given deadlines.
 
 
 ## FEATURES
 ### 1. Adding and deleting of expenses
+![image](./src/Resources/12.png)
+![image](./src/Resources/13.png)
+
 We would like users to be able to record their transaction of their expenses into different categories.
 Transaction Input: Users can manually enter the details of each expense they incur. This includes the expense amount, category (such as food, transportation, entertainment, etc.), and any additional notes or descriptions related to the expense.
 Our app offers predefined expense categories to choose from, or it may allow users to choose the “Other” category based on their specific needs and specify under “Description”. Categorizing expenses helps users analyze their spending patterns and identify areas where they can potentially work on and reduce costs.
 Transaction History: The transaction history keeps track of all the expenses recorded into the database. Users will be able to search up the description of the transaction which will filter out the transactions based on the input. They can also choose to delete the transaction if they entered any information wrongly or if they changed their mind in recording the transaction. Each transaction will also be color coded on the left based on its category for easy identification.
 
 ### 2. Breakdown spendings of different categories
+![image](./src/Resources/14.png)
+
 After the user adds his transactions, our app accumulates the total amount the user spends in each category to allow users to have a better understanding on how much they spend on the respective categories.
 ### 3. Visualize the user's financial information in terms of charts and graphs
+![image](./src/Resources/15.png)
+
 Graphs and charts are effective visual tools because they present information quickly and easily. It is not surprising then, that graphs are commonly used by print and electronic media. Sometimes, data can be better understood when presented by a graph than by a table because the graph can reveal a trend or comparison. Hence, our application decided to leverage on the ease of processing of data to provide our users with a better user experience by presenting our users’ spending habits in a donut graph.
  The chart displays the distribution of expenses across different categories, with each category having its own color code, for the convenience of differentiating the categories at one look. It also displays the total amount used for expenses in the middle.
 
 ### 4. Provide financial advice to user
+![image](./src/Resources/16.png)
+
 With a click of a button, our app dispenses a money saving tip from our list of tips stored within the app. With this function, our users will be able to learn more tricks on how to save money without having the hustle to search for it online.
 Designed to mimic a slot machine, our tip generator produces a rolling effect to present our tips in a fun and enjoyable manner for our users in a bid to increase the users’ experience when using the app.
 
 ### 5. Track and access real-time prices of stocks
+![image](./src/Resources/17.png)
+
 With a click of a button, our app dispenses a money saving tip from our list of tips stored within the app. With this function, our users will be able to learn more tricks on how to save money without having the hustle to search for it online.
 Designed to mimic a slot machine, our tip generator produces a rolling effect to present our tips in a fun and enjoyable manner for our users in a bid to increase the users’ experience when using the app.
+
+![image](./src/Resources/18.png)
 
 Users can also analyze the price charts of the stocks. Simply click onto the box of the stock and they will be redirected to the price chart. This chart shows prices of 3 time periods, 1 day, 1 week and 1 year. Furthermore, users can zoom into specific parts of the graph by clicking over the area.
 
@@ -116,19 +142,34 @@ Budgets are another important display to remind us to stick to our spending goal
 
 Our budget feature allows our user to edit their monthly budget, once the user has entered in his desired budget, a progress bar will show the budget amount, the total amount our user has spent in the month and how far he is from exceeding the budget. Any attempts to enter any invalid values such as negative numbers will be handled as errors.
 
+![image](./src/Resources/19.jpg)
+
 ### 7. Changes to our Alerts
 
 Budgets are another important display to remind us to stick to our spending goals. Having a budget displayed will allow the user to know how much money they have to spend before they exceed their budget goals. We hope that by including a budgeting section, users will be more mindful of their spending.
 
 Our budget feature allows our user to edit their monthly budget, once the user has entered in his desired budget, a progress bar will show the budget amount, the total amount our user has spent in the month and how far he is from exceeding the budget. Any attempts to enter any invalid values such as negative numbers will be handled as errors.
 
+![image](./src/Resources/20.jpg)
+![image](./src/Resources/21.jpg)
 
 
 ## TESTING
 
 ### User Testing:
+|Bugs Found|Fix to the bugs|
+|----|--------|
+|Website backend crashed after receiving an error|Created the error handling middleware in the backend to properly catch the error|
+|Transaction history did not re-render after adding transaction to the backend|Fixed the bug by adding a reload function to it|
+|Receiving an error when too many stocks added to the shortlist|Fixed it by fixing a quota to the number of stocks one can shortlist|
+|Transaction history caused page to be endless when too many transactions were added|Sorted items in a scroll bar so total height was limited|
+|Navigation bar did not update when the user logged out, allowing the user to access services despite being logged out|Used use-state and use-effect to update whenever the user logs out so that services could not be accessed|
+
 
 To carry out user testing for our application, we engaged our friends and seniors in Computer Science to use our application which we hosted online and give us their thoughts on our website as a whole. In our survey, we asked our users to rate our application on a scale of one to ten. We also included questions such as how can our app be improved, with one question specifically asking about the User interface and user experience while another question asking more about the features. 
+
+![image](./src/Resources/22.png)
+![image](./src/Resources/23.png)
 
 Our reason behind those questions was that we wanted to keep our questions as open as possible so that our users would be able to give any open and constructive feedback which we could use to better our project. We asked questions regarding our strengths and weaknesses so that we could have a better understanding on how we could improve and what we were doing well from an unbiased source. 
 
@@ -141,11 +182,17 @@ For milestone 2, we also conducted unit testing on several pages of our applicat
 	
 To achieve this, we utilized the React Testing Library and implemented a range of functions to test the user input capabilities for login credentials such as username, email, and password. By performing these tests, we aimed to guarantee the smooth functioning of these essential features within our application.
 
+![image](./src/Resources/24.png)
+
 Additionally, as part of our unit testing in milestone 2, we examined the text input and dropdown list input boxes in our transaction input page. Our objective was to ensure that these components were functioning correctly and in accordance with our expectations.
+
+![image](./src/Resources/25.png)
 
 Through our various tests, we were able to identify various bugs within our program and edited our code accordingly to prevent possible glitches from occurring. Additionally, we employed our friends to test our code with various outputs and was able to gain insightful feedback from them. Consequently, we changed our design for certain components and controlled certain inputs so as to improve the users’ experience when using our application.
 
 ### Integration Testing:
+![image](./src/Resources/26.png)
+![image](./src/Resources/27.png)
 
 For our integration testing, we tested our budgeting page. It was made up of various components such as the budget input, the buttons to submit the budget input and the progress bar. From our code above, we first checked that the page rendered and that the buttons and inputs were working in tandem. Consequently, we checked that the text “700” appeared, as that number was part of the progress bar component and by checking that, we could confirm that the progress bar did render as a result of the submission of the budget input, and that our components were working together fine.
 
@@ -153,14 +200,19 @@ Since we installed a package to render the progress bar, we initially encountere
 
 
 ### System Testing:
+![image](./src/Resources/30.png)
+![image](./src/Resources/31.png)
 
 For system testing, we created a test case whereby two users registered for an account with the same email. To do so, we made use of react testing package to key in the username input, email input and password input to be exactly the same. Consequently, our program worked exactly as it should as the first account was able to be created as planned, and the second email encountered an error whereby the page would display “ email taken “ and request the user create an account with a separate email. We also tested other cases where username and password were different and only email was the same, and the error was returned yet again.
 
 Similarly, we tested the case where an invalid email was input, such as john instead of john@live.com, and an error was shown yet again as planned.
 
 ### Backend Testing:
+![image](./src/Resources/28.png)
 
 To test our backend code, we used Postman to simulate the sending of requests to test whether our API endpoints return the intended responses. For example, to check that we have successfully edited the monthly budget property of the user in the budget page, we return the property after that and it is exactly what we entered in the PUT request. 
+
+![image](./src/Resources/29.png)
 
 We can also see that by entering an invalid or inappropriate value, our backend code also handles the error by returning the error message. For example, asking our user to enter a value greater than 0 if they entered a value smaller than 0.
 
